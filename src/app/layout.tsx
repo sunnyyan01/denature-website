@@ -12,6 +12,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "DE NATURE - Sydney Lunch Program",
   description: "Providing nutritious meals to children in need across Sydney",
+  verification: {
+    google: "OqLlSQNFE1spUS93SXK13pK8N_CO4S7m2l7H1rPvJmY",
+  },
 };
 
 export default function RootLayout({
