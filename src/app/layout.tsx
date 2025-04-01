@@ -48,9 +48,9 @@ export default function RootLayout({
                     Call Us
                   </span>
                 </a>
-                <a href="mailto:info@denature.com" className="text-white hover:text-primaryLight transition-colors group relative">
+                <a href="mailto:info@denature.org.au?v=2" className="text-white hover:text-primaryLight transition-colors group relative">
                   <Mail className="w-4 h-4 inline-block mr-1" />
-                  info@denature.com
+                  info@denature.org.au
                   <span className="absolute -bottom-6 left-0 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     Email Us
                   </span>
