@@ -133,7 +133,7 @@ export default function PartnerWithUsPage() {
                 Ready to make a difference? Contact us to discuss partnership opportunities that align with your organization's goals.
               </p>
               <p className="text-lg">
-                Email: <a href="mailto:partnerships@denature.org.au" className="text-green-600 hover:text-green-700 underline">partnerships@denature.org.au</a>
+                Email: <a href="mailto:info@denature.org.au" className="text-green-600 hover:text-green-700 underline">info@denature.org.au</a>
               </p>
             </div>
 
