@@ -31,18 +31,18 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative h-[80vh] w-full">
+      <section className="relative h-[100vh] w-full">
         <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center">
-          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-black/30"></div>
         </div>
-        <div className="relative container mx-auto px-4 h-full flex items-center">
+        <div className="relative container mx-auto px-4 h-full flex items-center justify-center">
           <div className="max-w-6xl mx-auto w-full">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-16 leading-[1.6] font-heading text-center space-y-6">
-              <div>Bringing Nutritious</div>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-16 leading-[1.6] font-heading text-center">
+              <div className="mb-2 md:mb-6">Bringing Nutritious</div>
               <div>Meals to Every Child</div>
             </h1>
             {/* 四个特点 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
                 <h3 className="text-xl font-semibold text-white mb-2">Pure Ingredients</h3>
                 <p className="text-white">Premium natural ingredients, no additives</p>
@@ -59,14 +59,6 @@ export default function Home() {
                 <h3 className="text-xl font-semibold text-white mb-2">Growth Focus</h3>
                 <p className="text-white">Supporting healthy development</p>
               </div>
-            </div>
-            <div className="flex justify-center">
-              <Link
-                href="/contact"
-                className="bg-green-600/90 hover:bg-green-700 text-white px-8 py-3 rounded-lg transition-colors text-lg font-semibold"
-              >
-                GET INVOLVED
-              </Link>
             </div>
           </div>
         </div>
