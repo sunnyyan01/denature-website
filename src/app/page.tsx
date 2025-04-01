@@ -35,10 +35,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center">
           <div className="absolute inset-0 bg-black/30"></div>
         </div>
-        <div className="relative container mx-auto px-4 h-full flex items-center justify-center">
-          <div className="max-w-6xl mx-auto w-full pt-16">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-16 leading-[1.6] font-heading text-center">
-              <div className="mb-2 md:mb-6">Bringing Nutritious</div>
+        <div className="relative container mx-auto px-4 h-screen flex items-start pt-40">
+          <div className="max-w-6xl mx-auto w-full pt-24">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-16 leading-[1.3] font-heading text-center">
+              <div className="mb-1 md:mb-3">Bringing Nutritious</div>
               <div>Meals to Every Child</div>
             </h1>
             {/* 四个特点 */}
