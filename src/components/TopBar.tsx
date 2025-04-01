@@ -8,8 +8,8 @@ export default function TopBar() {
               Email Us | info@denature.com
             </a>
             <span className="text-sm">|</span>
-            <a href="tel:+61410811935" className="text-sm hover:text-[#FFD700]">
-              Call Us | 0410 811 935
+            <a href="tel:0452005512" className="text-sm hover:text-[#FFD700]">
+              Call Us | 0452 005 512
             </a>
           </div>
           <div className="flex items-center space-x-4">

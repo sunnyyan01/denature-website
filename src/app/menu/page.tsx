@@ -60,18 +60,18 @@ export default function MenuPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen">
+      <section className="relative h-[60vh] -mt-40">
         <div className="absolute inset-0">
           <Image
-            src="/images/menu_hero.jpg?v=2"
-            alt="Our Menu"
+            src="/images/hero-menu.jpg"
+            alt="Menu Hero"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
-        <div className="relative h-full flex items-center justify-center text-center px-4">
+        <div className="relative h-full flex items-center justify-center text-center px-4 pt-32">
           <div className="max-w-4xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
               Our Menu
@@ -104,7 +104,7 @@ export default function MenuPage() {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-green-600 font-medium">$12.99</span>
-                  <button className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors">
+                  <button className="bg-slate-700 text-white px-4 py-2 rounded-full hover:bg-slate-800 transition-colors">
                     Order Now
                   </button>
                 </div>
@@ -128,7 +128,7 @@ export default function MenuPage() {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-green-600 font-medium">$14.99</span>
-                  <button className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors">
+                  <button className="bg-slate-700 text-white px-4 py-2 rounded-full hover:bg-slate-800 transition-colors">
                     Order Now
                   </button>
                 </div>
@@ -152,7 +152,7 @@ export default function MenuPage() {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-green-600 font-medium">$13.99</span>
-                  <button className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors">
+                  <button className="bg-slate-700 text-white px-4 py-2 rounded-full hover:bg-slate-800 transition-colors">
                     Order Now
                   </button>
                 </div>

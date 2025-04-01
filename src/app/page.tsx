@@ -1,5 +1,8 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
+import { Leaf, Scale, Recycle, Sprout } from "lucide-react";
 
 const coreValues = [
   {
@@ -26,64 +29,94 @@ const coreValues = [
 
 export default function Home() {
   return (
-    <div>
+    <main>
       {/* Hero Section */}
-      <section className="relative h-screen">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Healthy food background"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/30" />
+      <section className="relative h-[80vh] w-full">
+        <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center">
+          <div className="absolute inset-0 bg-black/50"></div>
         </div>
-        <div className="relative h-full flex items-center justify-center text-center px-4">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-8">
-              Providing Nutritious Meals to Children in Need
+        <div className="relative container mx-auto px-4 h-full flex items-center">
+          <div className="max-w-6xl mx-auto w-full">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-16 leading-[1.6] font-heading text-center space-y-6">
+              <div>Bringing Nutritious</div>
+              <div>Meals to Every Child</div>
             </h1>
             {/* 四个特点 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-              <div className="bg-white/5 backdrop-blur-sm p-6 rounded-lg hover:bg-white/10 transition-colors">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
                 <h3 className="text-xl font-semibold text-white mb-2">Pure Ingredients</h3>
-                <p className="text-white/80">Premium natural ingredients, no additives</p>
+                <p className="text-white">Premium natural ingredients, no additives</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-sm p-6 rounded-lg hover:bg-white/10 transition-colors">
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
                 <h3 className="text-xl font-semibold text-white mb-2">Balanced Nutrition</h3>
-                <p className="text-white/80">Scientifically balanced meals</p>
+                <p className="text-white">Scientifically balanced meals</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-sm p-6 rounded-lg hover:bg-white/10 transition-colors">
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
                 <h3 className="text-xl font-semibold text-white mb-2">Eco-Conscious</h3>
-                <p className="text-white/80">Sustainable practices, Earth-friendly</p>
+                <p className="text-white">Sustainable practices, Earth-friendly</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-sm p-6 rounded-lg hover:bg-white/10 transition-colors">
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
                 <h3 className="text-xl font-semibold text-white mb-2">Growth Focus</h3>
-                <p className="text-white/80">Supporting healthy development</p>
+                <p className="text-white">Supporting healthy development</p>
               </div>
             </div>
-            <Link
-              href="/contact"
-              className="inline-block bg-green-600 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-green-700 transition-colors"
-            >
-              Get Involved
-            </Link>
+            <div className="flex justify-center">
+              <Link
+                href="/contact"
+                className="bg-green-600/90 hover:bg-green-700 text-white px-8 py-3 rounded-lg transition-colors text-lg font-semibold"
+              >
+                GET INVOLVED
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Mission Section */}
-      <section className="bg-gradient-to-br from-green-50 via-emerald-50 to-green-100 py-24">
+      <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-8 text-gray-900 text-center">
-            Our Mission
-          </h2>
-          <p className="text-xl text-gray-700 leading-relaxed">
-            Our Mission is to provide nutritious, diverse, and delicious meals to low-income, refugee, and special education school children, promoting balanced eating habits to support their growth, health, and academic performance, ensuring every child has the opportunity to thrive.
-          </p>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-heading">Our Mission</h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Our mission is to help all children grow up healthy and strong by ensuring they have access to nutritious, well-balanced meals — especially those from low-income families, refugee backgrounds, or special education environments. We are committed to supporting every child's health, development, and learning through wholesome, nourishing food.
+            </p>
+          </div>
         </div>
       </section>
-    </div>
+
+      {/* Lunchbox Support Section */}
+      <section className="py-24 bg-green-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-green-700 mb-8 text-center">
+              Still Wondering What to Pack for Your Child's Lunch Tomorrow?
+            </h2>
+            <div className="space-y-8 text-gray-700">
+              <p className="text-center text-xl">
+                Busy mornings. Rising grocery costs. Endless responsibilities.
+              </p>
+              <p className="text-center text-xl">
+                Preparing a healthy lunch for your child shouldn't be a daily struggle.
+              </p>
+              <p className="text-center text-2xl font-bold text-green-700">
+                De Nature Healthy Lunchbox is here to help.
+              </p>
+              <p className="text-center text-lg">
+                We're a nonprofit organization providing fresh, nutritious, and lovingly prepared lunchboxes—because every child deserves a healthy meal at school, and every parent deserves peace of mind.
+              </p>
+              <p className="text-center text-lg">
+                No matter your circumstances, we're here to support you with natural, balanced meals that fuel young minds and growing bodies.
+              </p>
+              <p className="text-center text-xl font-bold text-green-700">
+                It's more than just food.
+              </p>
+              <p className="text-center text-xl font-bold text-green-700">
+                It's care, energy, and dignity—delivered daily.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
