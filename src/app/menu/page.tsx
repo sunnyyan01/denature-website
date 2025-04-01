@@ -71,7 +71,7 @@ export default function MenuPage() {
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
-        <div className="relative h-full flex items-center justify-center text-center px-4 pt-48">
+        <div className="relative h-full flex items-center justify-center text-center px-4 pt-56">
           <div className="max-w-4xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
               Our Menu

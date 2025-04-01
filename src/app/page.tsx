@@ -36,7 +36,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/30"></div>
         </div>
         <div className="relative container mx-auto px-4 h-full flex items-center justify-center">
-          <div className="max-w-6xl mx-auto w-full">
+          <div className="max-w-6xl mx-auto w-full pt-16">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-16 leading-[1.6] font-heading text-center">
               <div className="mb-2 md:mb-6">Bringing Nutritious</div>
               <div>Meals to Every Child</div>
