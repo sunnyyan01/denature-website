@@ -42,22 +42,22 @@ export default function Home() {
               <div>Meals to Every Child</div>
             </h1>
             {/* 四个特点 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
-                <h3 className="text-xl font-semibold text-white mb-2">Pure Ingredients</h3>
-                <p className="text-white">Premium natural ingredients, no additives</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-sm p-5 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
+                <h3 className="text-xl font-semibold text-white mb-1">Pure Ingredients</h3>
+                <p className="text-white text-sm">Premium natural ingredients, no additives</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
-                <h3 className="text-xl font-semibold text-white mb-2">Balanced Nutrition</h3>
-                <p className="text-white">Scientifically balanced meals</p>
+              <div className="bg-white/10 backdrop-blur-sm p-5 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
+                <h3 className="text-xl font-semibold text-white mb-1">Balanced Nutrition</h3>
+                <p className="text-white text-sm">Scientifically balanced meals</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
-                <h3 className="text-xl font-semibold text-white mb-2">Eco-Conscious</h3>
-                <p className="text-white">Sustainable practices, Earth-friendly</p>
+              <div className="bg-white/10 backdrop-blur-sm p-5 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
+                <h3 className="text-xl font-semibold text-white mb-1">Eco-Conscious</h3>
+                <p className="text-white text-sm">Sustainable practices, Earth-friendly</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
-                <h3 className="text-xl font-semibold text-white mb-2">Growth Focus</h3>
-                <p className="text-white">Supporting healthy development</p>
+              <div className="bg-white/10 backdrop-blur-sm p-5 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
+                <h3 className="text-xl font-semibold text-white mb-1">Growth Focus</h3>
+                <p className="text-white text-sm">Supporting healthy development</p>
               </div>
             </div>
           </div>

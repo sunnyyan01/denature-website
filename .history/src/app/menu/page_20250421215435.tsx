@@ -4,7 +4,7 @@ import Image from "next/image";
 const weekAMenu = [
   {
     id: 1,
-    name: 'Teriyaki Udon with Japanese Lean Beef',
+    name: '🇯🇵 Teriyaki Udon with Japanese Lean Beef',
     description: 'Energy: 515 kcal | Protein: 36g | Fiber: 5g',
     details: [
       'Main: Teriyaki udon noodles',
@@ -12,11 +12,11 @@ const weekAMenu = [
       'Vegetables: Spinach, carrots, zucchini, sweet corn',
       'Health Rating: 🟢 65% 🟠 30% 🔴 5%'
     ],
-    image: '/images/menu/teriyaki-udon.jpg',
+    image: '/images/menu/tonkatsu-udon.jpg',
   },
   {
     id: 2,
-    name: 'Vietnamese Chicken Roll Plate',
+    name: '🇻🇳 Vietnamese Chicken Roll Plate',
     description: 'Energy: 475 kcal | Protein: 32g | Fiber: 6g',
     details: [
       'Main: Vietnamese rice paper rolls with grilled chicken skewer',
@@ -27,7 +27,7 @@ const weekAMenu = [
   },
   {
     id: 3,
-    name: 'Lemon Butter Fish with Brown Rice',
+    name: '🌍 Lemon Butter Fish with Brown Rice',
     description: 'Energy: 455 kcal | Protein: 35g | Fiber: 7g',
     details: [
       'Main: Brown rice',
@@ -39,7 +39,7 @@ const weekAMenu = [
   },
   {
     id: 4,
-    name: 'Pesto Pasta Bowl with Grilled Steak',
+    name: '🇮🇹 Pesto Pasta Bowl with Grilled Steak',
     description: 'Energy: 505 kcal | Protein: 40g | Fiber: 6g',
     details: [
       'Main: Pesto pasta',
@@ -51,32 +51,32 @@ const weekAMenu = [
   },
   {
     id: 5,
-    name: 'Lentil Patties Power Meal',
+    name: '🌍 Lentil Patties Power Meal',
     description: 'Energy: 510 kcal | Protein: 30g | Fiber: 8g',
     details: [
       'Main: Lentil patties with brown basmati rice',
       'Vegetables: Seasonal vegetables',
       'Health Rating: 🟢 90% 🟠 5% 🔴 5%'
     ],
-    image: '/images/menu/lentil-patties.jpg',
+    image: '/images/menu/rainbow-bowl.jpg',
   },
 ];
 
 const weekBMenu = [
   {
     id: 6,
-    name: 'Chinese Veggie Dumpling Combo',
+    name: '🇨🇳 Chinese Veggie Dumpling Combo',
     description: 'Energy: 480 kcal | Protein: 24g | Fiber: 6g',
     details: [
       'Main: Vegetarian dumplings (6 pieces)',
       'Vegetables: Roasted vegetables with creamy orange tahini dressing',
       'Health Rating: 🟢 85% 🟠 10% 🔴 5%'
     ],
-    image: '/images/menu/dumplings.jpg',
+    image: '/images/menu/braised-beef.jpg',
   },
   {
     id: 7,
-    name: 'Teriyaki Chicken & Millet Meal',
+    name: '🇯🇵 Teriyaki Chicken & Millet Meal',
     description: 'Energy: 470 kcal | Protein: 35g | Fiber: 5g',
     details: [
       'Main: Millet & green pea rice',
@@ -88,7 +88,7 @@ const weekBMenu = [
   },
   {
     id: 8,
-    name: 'Rainbow Fried Rice with Chicken',
+    name: '🇨🇳 Rainbow Fried Rice with Chicken',
     description: 'Energy: 520 kcal | Protein: 28g | Fiber: 6g',
     details: [
       'Main: Rainbow veggie fried rice',
@@ -96,11 +96,11 @@ const weekBMenu = [
       'Vegetables: Seasonal vegetables',
       'Health Rating: 🟢 90% 🟠 5% 🔴 5%'
     ],
-    image: '/images/menu/rainbow-rice.jpg',
+    image: '/images/menu/rainbow-bowl.jpg',
   },
   {
     id: 9,
-    name: 'Korean Gimbap Bowl with Grilled Chicken',
+    name: '🇰🇷 Korean Gimbap Bowl with Grilled Chicken',
     description: 'Energy: 525 kcal | Protein: 38g | Fiber: 7g',
     details: [
       'Main: Korean gimbap with brown rice or mixed grains',
@@ -108,11 +108,11 @@ const weekBMenu = [
       'Vegetables: Seasonal vegetables, small portion of kimchi',
       'Health Rating: 🟢 75% 🟠 20% 🔴 5%'
     ],
-    image: '/images/menu/korean-gimbap.jpg',
+    image: '/images/menu/korean-bbq.jpg',
   },
   {
     id: 10,
-    name: 'Mexican Burrito Bowl with Lean Beef & Beans',
+    name: '🇲🇽 Mexican Burrito Bowl with Lean Beef & Beans',
     description: 'Energy: 585 kcal | Protein: 42g | Fiber: 7g',
     details: [
       'Main: Whole wheat burrito',

@@ -4,7 +4,7 @@ import Image from "next/image";
 const weekAMenu = [
   {
     id: 1,
-    name: 'Teriyaki Udon with Japanese Lean Beef',
+    name: '日本 Teriyaki Udon with Japanese Lean Beef',
     description: 'Energy: 515 kcal | Protein: 36g | Fiber: 5g',
     details: [
       'Main: Teriyaki udon noodles',
@@ -16,7 +16,7 @@ const weekAMenu = [
   },
   {
     id: 2,
-    name: 'Vietnamese Chicken Roll Plate',
+    name: '越南 Vietnamese Chicken Roll Plate',
     description: 'Energy: 475 kcal | Protein: 32g | Fiber: 6g',
     details: [
       'Main: Vietnamese rice paper rolls with grilled chicken skewer',
@@ -27,7 +27,7 @@ const weekAMenu = [
   },
   {
     id: 3,
-    name: 'Lemon Butter Fish with Brown Rice',
+    name: '🌏 Lemon Butter Fish with Brown Rice',
     description: 'Energy: 455 kcal | Protein: 35g | Fiber: 7g',
     details: [
       'Main: Brown rice',
@@ -39,7 +39,7 @@ const weekAMenu = [
   },
   {
     id: 4,
-    name: 'Pesto Pasta Bowl with Grilled Steak',
+    name: '意大利 Pesto Pasta Bowl with Grilled Steak',
     description: 'Energy: 505 kcal | Protein: 40g | Fiber: 6g',
     details: [
       'Main: Pesto pasta',
@@ -51,7 +51,7 @@ const weekAMenu = [
   },
   {
     id: 5,
-    name: 'Lentil Patties Power Meal',
+    name: '🌏 Lentil Patties Power Meal',
     description: 'Energy: 510 kcal | Protein: 30g | Fiber: 8g',
     details: [
       'Main: Lentil patties with brown basmati rice',
@@ -65,7 +65,7 @@ const weekAMenu = [
 const weekBMenu = [
   {
     id: 6,
-    name: 'Chinese Veggie Dumpling Combo',
+    name: '中国 Chinese Veggie Dumpling Combo',
     description: 'Energy: 480 kcal | Protein: 24g | Fiber: 6g',
     details: [
       'Main: Vegetarian dumplings (6 pieces)',
@@ -76,7 +76,7 @@ const weekBMenu = [
   },
   {
     id: 7,
-    name: 'Teriyaki Chicken & Millet Meal',
+    name: '日本 Teriyaki Chicken & Millet Meal',
     description: 'Energy: 470 kcal | Protein: 35g | Fiber: 5g',
     details: [
       'Main: Millet & green pea rice',
@@ -88,7 +88,7 @@ const weekBMenu = [
   },
   {
     id: 8,
-    name: 'Rainbow Fried Rice with Chicken',
+    name: '中国 Rainbow Fried Rice with Chicken',
     description: 'Energy: 520 kcal | Protein: 28g | Fiber: 6g',
     details: [
       'Main: Rainbow veggie fried rice',
@@ -100,7 +100,7 @@ const weekBMenu = [
   },
   {
     id: 9,
-    name: 'Korean Gimbap Bowl with Grilled Chicken',
+    name: '韩国 Korean Gimbap Bowl with Grilled Chicken',
     description: 'Energy: 525 kcal | Protein: 38g | Fiber: 7g',
     details: [
       'Main: Korean gimbap with brown rice or mixed grains',
@@ -112,7 +112,7 @@ const weekBMenu = [
   },
   {
     id: 10,
-    name: 'Mexican Burrito Bowl with Lean Beef & Beans',
+    name: '墨西哥 Mexican Burrito Bowl with Lean Beef & Beans',
     description: 'Energy: 585 kcal | Protein: 42g | Fiber: 7g',
     details: [
       'Main: Whole wheat burrito',

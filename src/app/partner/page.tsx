@@ -1,3 +1,5 @@
+import { Mail } from "lucide-react";
+
 export default function PartnerPage() {
   return (
     <main className="min-h-screen">
@@ -74,6 +76,12 @@ export default function PartnerPage() {
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
                   ></textarea>
                 </div>
+                <a href="mailto:info@denature.org.au" className="text-white hover:text-primaryLight transition-colors group relative">
+                  <Mail className="w-4 h-4" />
+                  <span className="absolute -bottom-6 left-0 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    Email Us
+                  </span>
+                </a>
                 <button
                   type="submit"
                   className="w-full bg-[#1B7B42] hover:bg-[#145F34] text-white px-6 py-3 rounded-lg text-lg font-semibold transition-colors duration-300"
