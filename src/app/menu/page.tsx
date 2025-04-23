@@ -10,7 +10,9 @@ const weekAMenu = [
       'Main: Teriyaki udon noodles',
       'Protein: Japanese lean beef',
       'Vegetables: Spinach, carrots, zucchini, sweet corn',
-      'Health Rating: 🟢 65% 🟠 30% 🔴 5%'
+      'Health Rating: 🟢 65% 🟠 30% 🔴 5%',
+      'NSW Health Classification:',
+      'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/teriyaki-udon.jpg',
   },
@@ -21,7 +23,9 @@ const weekAMenu = [
     details: [
       'Main: Vietnamese rice paper rolls with grilled chicken skewer',
       'Vegetables: Broccoli, bell peppers, roasted pumpkin',
-      'Health Rating: 🟢 80% 🟠 15% 🔴 5%'
+      'Health Rating: 🟢 80% 🟠 15% 🔴 5%',
+      'NSW Health Classification:',
+      'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/rice-paper-roll.jpg',
   },
@@ -33,7 +37,9 @@ const weekAMenu = [
       'Main: Brown rice',
       'Protein: Lemon butter pan-seared basa fish',
       'Vegetables: Seasonal vegetables',
-      'Health Rating: 🟢 85% 🟠 10% 🔴 5%'
+      'Health Rating: 🟢 85% 🟠 10% 🔴 5%',
+      'NSW Health Classification:',
+      'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/lemon-fish.jpg',
   },
@@ -45,7 +51,9 @@ const weekAMenu = [
       'Main: Pesto pasta',
       'Protein: Grilled steak',
       'Vegetables: Seasonal vegetables',
-      'Health Rating: 🟢 55% 🟠 35% 🔴 10%'
+      'Health Rating: 🟢 55% 🟠 35% 🔴 10%',
+      'NSW Health Classification:',
+      'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/pesto-pasta.jpg',
   },
@@ -56,7 +64,9 @@ const weekAMenu = [
     details: [
       'Main: Lentil patties with brown basmati rice',
       'Vegetables: Seasonal vegetables',
-      'Health Rating: 🟢 90% 🟠 5% 🔴 5%'
+      'Health Rating: 🟢 90% 🟠 5% 🔴 5%',
+      'NSW Health Classification:',
+      'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/lentil-patties.jpg',
   },
@@ -70,7 +80,9 @@ const weekBMenu = [
     details: [
       'Main: Vegetarian dumplings (6 pieces)',
       'Vegetables: Roasted vegetables with creamy orange tahini dressing',
-      'Health Rating: 🟢 85% 🟠 10% 🔴 5%'
+      'Health Rating: 🟢 85% 🟠 10% 🔴 5%',
+      'NSW Health Classification:',
+      'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/dumplings.jpg',
   },
@@ -82,7 +94,9 @@ const weekBMenu = [
       'Main: Millet & green pea rice',
       'Protein: Teriyaki chicken, Japanese rolled omelet',
       'Vegetables: Cucumber, broccoli, green peas',
-      'Health Rating: 🟢 80% 🟠 15% 🔴 5%'
+      'Health Rating: 🟢 80% 🟠 15% 🔴 5%',
+      'NSW Health Classification:',
+      'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/teriyaki-chicken.jpg',
   },
@@ -94,7 +108,9 @@ const weekBMenu = [
       'Main: Rainbow veggie fried rice',
       'Protein: Grilled chicken thigh (skinless)',
       'Vegetables: Seasonal vegetables',
-      'Health Rating: 🟢 90% 🟠 5% 🔴 5%'
+      'Health Rating: 🟢 90% 🟠 5% 🔴 5%',
+      'NSW Health Classification:',
+      'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/rainbow-rice.jpg',
   },
@@ -106,7 +122,9 @@ const weekBMenu = [
       'Main: Korean gimbap with brown rice or mixed grains',
       'Protein: Grilled soy-garlic chicken thigh (no frying, no added sugar)',
       'Vegetables: Seasonal vegetables, small portion of kimchi',
-      'Health Rating: 🟢 75% 🟠 20% 🔴 5%'
+      'Health Rating: 🟢 75% 🟠 20% 🔴 5%',
+      'NSW Health Classification:',
+      'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/korean-gimbap.jpg',
   },
@@ -118,7 +136,9 @@ const weekBMenu = [
       'Main: Whole wheat burrito',
       'Protein: Lean grilled beef strips, black beans',
       'Vegetables: Roasted vegetables',
-      'Health Rating: 🟢 70% 🟠 25% 🔴 5%'
+      'Health Rating: 🟢 70% 🟠 25% 🔴 5%',
+      'NSW Health Classification:',
+      'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/mexican-burrito.jpg',
   },
