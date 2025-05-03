@@ -1,18 +1,6 @@
-'use client';
-
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from 'react';
 
-// 分类常量
-type Category = 'healthy' | 'vegetarian' | 'glutenfree';
-const categories = [
-  { key: 'healthy', label: 'HEALTHY MEALS' },
-  { key: 'vegetarian', label: 'VEGETARIAN MEALS' },
-  { key: 'glutenfree', label: 'GLUTEN FREE MEALS' },
-];
-
-// 为每个菜品添加category字段（初始全部为healthy，您可后续调整）
 const weekAMenu = [
   {
     id: 1,
@@ -27,7 +15,6 @@ const weekAMenu = [
       'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/teriyaki-udon.jpg',
-    category: 'healthy',
   },
   {
     id: 2,
@@ -41,7 +28,6 @@ const weekAMenu = [
       'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/rice-paper-roll.jpg',
-    category: 'healthy',
   },
   {
     id: 3,
@@ -56,7 +42,6 @@ const weekAMenu = [
       'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/lemon-fish.jpg',
-    category: 'healthy',
   },
   {
     id: 4,
@@ -71,7 +56,6 @@ const weekAMenu = [
       'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/pesto-pasta.jpg',
-    category: 'healthy',
   },
   {
     id: 5,
@@ -85,7 +69,6 @@ const weekAMenu = [
       'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/lentil-patties.jpg',
-    category: 'healthy',
   },
 ];
 
@@ -102,7 +85,6 @@ const weekBMenu = [
       'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/dumplings.jpg',
-    category: 'healthy',
   },
   {
     id: 7,
@@ -117,7 +99,6 @@ const weekBMenu = [
       'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/teriyaki-chicken.jpg',
-    category: 'healthy',
   },
   {
     id: 8,
@@ -132,7 +113,6 @@ const weekBMenu = [
       'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/rainbow-rice.jpg',
-    category: 'healthy',
   },
   {
     id: 9,
@@ -147,7 +127,6 @@ const weekBMenu = [
       'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/korean-gimbap.jpg',
-    category: 'healthy',
   },
   {
     id: 10,
@@ -162,20 +141,10 @@ const weekBMenu = [
       'Overall Meal Classification: ✅ Everyday'
     ],
     image: '/images/menu/mexican-burrito.jpg',
-    category: 'healthy',
   },
 ];
 
-// 合并所有菜品，便于分类筛选
-const allMenus = [...weekAMenu, ...weekBMenu];
-
 export default function MenuPage() {
-  // 分类状态
-  const [selectedCategory, setSelectedCategory] = useState<Category>('healthy');
-
-  // 筛选菜品
-  const filteredMenus = allMenus.filter(item => item.category === selectedCategory);
-
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -203,50 +172,34 @@ export default function MenuPage() {
       </section>
 
       {/* Menu Section */}
-      <section className="py-16 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-8">
-          {/* 左侧分类栏 */}
-          <aside
-            className="w-56 min-w-[160px] flex flex-col items-stretch bg-white border-r border-gray-200 shadow-sm pt-2"
-            style={{
-              position: 'sticky',
-              top: 0,
-              zIndex: 10
-            }}
-          >
-            <ul className="space-y-4 px-4">
-              {categories.map(cat => (
-                <li key={cat.key}>
-                  <button
-                    className={`w-full text-left px-4 py-2 rounded-lg font-semibold transition-colors duration-200 ${selectedCategory === cat.key ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700 hover:bg-green-50'}`}
-                    onClick={() => setSelectedCategory(cat.key as Category)}
-                  >
-                    {cat.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </aside>
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-center mb-8">Healthy Lunchbox Menu</h2>
+            <p className="text-lg text-center text-gray-600 max-w-4xl mx-auto mb-10">
+              Our carefully crafted meals feature a fusion of international flavors, 
+              providing balanced nutrition for your child's growth and development
+            </p>
+          </div>
 
-          {/* 右侧菜品列表 */}
-          <div className="flex-1 ml-56">
-            <h2 className="text-3xl font-bold text-center mb-8">{categories.find(c => c.key === selectedCategory)?.label}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
-              {filteredMenus.map((item) => (
-                <div key={item.id} className="bg-white rounded-xl shadow-lg overflow-hidden max-w-xl w-full flex flex-col">
-                  <div className="relative aspect-[4/3] w-full">
+          {/* Week A Section */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-center mb-8">Week A: International Cuisine Journey</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {weekAMenu.map((item) => (
+                <div key={item.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <div className="relative h-64">
                     <Image
                       src={item.image}
                       alt={item.name}
                       fill
-                      className="object-cover rounded-t-xl"
-                      style={{ objectPosition: item.name === 'Rainbow Fried Rice with Chicken' || item.name === 'Lentil Patties Power Meal' ? 'center 80%' : 'center 70%' }}
+                      className="object-cover object-center object-bottom"
                     />
                   </div>
-                  <div className="p-5 flex-1 flex flex-col">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.name}</h3>
-                    <p className="text-gray-600 mb-4 whitespace-nowrap overflow-x-auto">{item.description}</p>
-                    <div className="space-y-2 mb-4 flex-1">
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.name}</h3>
+                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    <div className="space-y-2 mb-4">
                       {item.details.map((detail, index) => (
                         <p key={index} className="text-gray-700 text-sm">• {detail}</p>
                       ))}
@@ -254,9 +207,34 @@ export default function MenuPage() {
                   </div>
                 </div>
               ))}
-              {filteredMenus.length === 0 && (
-                <div className="col-span-full text-center text-gray-400 py-16 text-lg">No meals in this category yet.</div>
-              )}
+            </div>
+          </div>
+
+          {/* Week B Section */}
+          <div>
+            <h3 className="text-2xl font-bold text-center mb-8">Week B: Southeast Asian & Mediterranean Week</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {weekBMenu.map((item) => (
+                <div key={item.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <div className="relative h-64">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover object-center object-bottom"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.name}</h3>
+                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    <div className="space-y-2 mb-4">
+                      {item.details.map((detail, index) => (
+                        <p key={index} className="text-gray-700 text-sm">• {detail}</p>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

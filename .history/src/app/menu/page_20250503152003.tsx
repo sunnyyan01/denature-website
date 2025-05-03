@@ -233,7 +233,7 @@ export default function MenuPage() {
             <h2 className="text-3xl font-bold text-center mb-8">{categories.find(c => c.key === selectedCategory)?.label}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
               {filteredMenus.map((item) => (
-                <div key={item.id} className="bg-white rounded-xl shadow-lg overflow-hidden max-w-xl w-full flex flex-col">
+                <div key={item.id} className="bg-white rounded-xl shadow-lg overflow-hidden max-w-md w-full flex flex-col">
                   <div className="relative aspect-[4/3] w-full">
                     <Image
                       src={item.image}

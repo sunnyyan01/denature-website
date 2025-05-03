@@ -209,8 +209,11 @@ export default function MenuPage() {
           <aside
             className="w-56 min-w-[160px] flex flex-col items-stretch bg-white border-r border-gray-200 shadow-sm pt-2"
             style={{
-              position: 'sticky',
-              top: 0,
+              position: 'fixed',
+              left: 0,
+              top: 384,
+              maxHeight: 'calc(100vh - 384px)',
+              overflowY: 'auto',
               zIndex: 10
             }}
           >
@@ -231,22 +234,22 @@ export default function MenuPage() {
           {/* 右侧菜品列表 */}
           <div className="flex-1 ml-56">
             <h2 className="text-3xl font-bold text-center mb-8">{categories.find(c => c.key === selectedCategory)?.label}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredMenus.map((item) => (
-                <div key={item.id} className="bg-white rounded-xl shadow-lg overflow-hidden max-w-xl w-full flex flex-col">
-                  <div className="relative aspect-[4/3] w-full">
+                <div key={item.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <div className="relative h-64">
                     <Image
                       src={item.image}
                       alt={item.name}
                       fill
-                      className="object-cover rounded-t-xl"
+                      className="object-cover"
                       style={{ objectPosition: item.name === 'Rainbow Fried Rice with Chicken' || item.name === 'Lentil Patties Power Meal' ? 'center 80%' : 'center 70%' }}
                     />
                   </div>
-                  <div className="p-5 flex-1 flex flex-col">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.name}</h3>
-                    <p className="text-gray-600 mb-4 whitespace-nowrap overflow-x-auto">{item.description}</p>
-                    <div className="space-y-2 mb-4 flex-1">
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.name}</h3>
+                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    <div className="space-y-2 mb-4">
                       {item.details.map((detail, index) => (
                         <p key={index} className="text-gray-700 text-sm">• {detail}</p>
                       ))}
