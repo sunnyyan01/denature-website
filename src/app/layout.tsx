@@ -3,7 +3,8 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Phone, Mail, Facebook, Instagram, Twitter } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
+import { FiFacebook, FiInstagram, FiTwitter } from 'react-icons/fi';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,46 +37,34 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${poppins.variable} font-sans bg-background text-text`}>
-        {/* Social Info Bar - Fixed at top */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-green-600">
-          <div className="container mx-auto px-4 py-2">
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center space-x-6">
-                <a href="tel:0452005512" className="text-white hover:text-primaryLight transition-colors group relative">
-                  <Phone className="w-4 h-4 inline-block mr-1" />
-                  0452 005 512
-                  <span className="absolute -bottom-6 left-0 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    Call Us
-                  </span>
-                </a>
-                <a href="mailto:info@denature.org.au?v=2" className="text-white hover:text-primaryLight transition-colors group relative">
-                  <Mail className="w-4 h-4 inline-block mr-1" />
-                  info@denature.org.au
-                  <span className="absolute -bottom-6 left-0 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    Email Us
-                  </span>
-                </a>
-              </div>
-              <div className="flex items-center space-x-4">
-                <a href="#" className="text-white hover:text-primaryLight transition-colors group relative">
-                  <Facebook className="w-4 h-4" />
-                  <span className="absolute -bottom-6 left-0 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    Facebook
-                  </span>
-                </a>
-                <a href="#" className="text-white hover:text-primaryLight transition-colors group relative">
-                  <Instagram className="w-4 h-4" />
-                  <span className="absolute -bottom-6 left-0 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    Instagram
-                  </span>
-                </a>
-                <a href="#" className="text-white hover:text-primaryLight transition-colors group relative">
-                  <Twitter className="w-4 h-4" />
-                  <span className="absolute -bottom-6 left-0 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    Twitter
-                  </span>
-                </a>
-              </div>
+        {/* 顶部社交信息栏 */}
+        <div
+          className="fixed top-0 left-0 right-0 z-50"
+          style={{
+            background: '#F5F3ED',
+            height: '56px',
+            borderBottom: '1px solid #E0E0E0',
+            fontFamily: "'Inter', 'Lato', sans-serif",
+          }}
+        >
+          <div className="container flex items-center justify-between h-full px-4">
+            {/* 联系方式 */}
+            <div className="flex items-center space-x-6 text-[#2E5E4E] text-sm">
+              <a href="tel:0452005512" className="hover:underline">0452 005 512</a>
+              <span className="hidden sm:inline">|</span>
+              <a href="mailto:info@denature.org.au" className="hover:underline">info@denature.org.au</a>
+            </div>
+            {/* 社交图标 */}
+            <div className="flex items-center space-x-4">
+              <a href="#" className="text-[#2E5E4E] hover:text-[#4A7C59]">
+                <FiFacebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-[#2E5E4E] hover:text-[#4A7C59]">
+                <FiInstagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-[#2E5E4E] hover:text-[#4A7C59]">
+                <FiTwitter className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>

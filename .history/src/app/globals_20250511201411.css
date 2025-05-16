@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* 主色调 */
+  --color-primary: #4A7C59;      /* 深绿色 */
+  --color-primary-light: #6B9B7D; /* 浅绿色 */
+  --color-primary-lighter: #E8F3ED; /* 最浅绿色 */
+  
+  /* 中性色 */
+  --color-neutral-50: #FAFAFA;
+  --color-neutral-100: #F5F5F5;
+  --color-neutral-200: #EEEEEE;
+  --color-neutral-300: #E0E0E0;
+  --color-neutral-400: #BDBDBD;
+  --color-neutral-500: #9E9E9E;
+  --color-neutral-600: #757575;
+  --color-neutral-700: #616161;
+  --color-neutral-800: #424242;
+  --color-neutral-900: #212121;
+  
+  /* 强调色 */
+  --color-accent: #F5B971;       /* 温暖的米色 */
+  --color-accent-light: #F9D5A7; /* 浅米色 */
+  
+  /* 功能色 */
+  --color-success: #4CAF50;
+  --color-warning: #FFC107;
+  --color-error: #F44336;
+  
+  /* 字体 */
+  --font-primary: 'Nunito', sans-serif;
+  
+  /* 间距 */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+  
+  /* 圆角 */
+  --radius-sm: 0.25rem;    /* 4px */
+  --radius-md: 0.5rem;     /* 8px */
+  --radius-lg: 1rem;       /* 16px */
+  --radius-full: 9999px;
+  
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-primary);
+    color: var(--color-neutral-900);
+    background-color: var(--color-neutral-50);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    font-size: 2.5rem; /* 40px */
+    @screen md {
+      font-size: 3.5rem; /* 56px */
+    }
+  }
+  
+  h2 {
+    font-size: 2rem; /* 32px */
+    @screen md {
+      font-size: 2.5rem; /* 40px */
+    }
+  }
+  
+  h3 {
+    font-size: 1.5rem; /* 24px */
+    @screen md {
+      font-size: 2rem; /* 32px */
+    }
+  }
+  
+  p {
+    line-height: 1.6;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-colors duration-200;
+  }
+  
+  .btn-primary {
+    @apply bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-light)];
+  }
+  
+  .btn-secondary {
+    @apply bg-[var(--color-accent)] text-[var(--color-neutral-900)] hover:bg-[var(--color-accent-light)];
+  }
+  
+  .btn-outline {
+    @apply border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary-lighter)];
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden;
+  }
+  
+  .section {
+    @apply py-16 md:py-24;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-center mb-12;
+  }
+  
+  .hero {
+    @apply relative h-[80vh] md:h-screen flex items-center;
+  }
+  
+  .hero-content {
+    @apply relative z-10 text-center max-w-4xl mx-auto px-4;
+  }
+  
+  .hero-image {
+    @apply absolute inset-0 w-full h-full object-cover;
+  }
+  
+  .hero-overlay {
+    @apply absolute inset-0 bg-black/30;
+  }
+}
+
+/* 自定义动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* 响应式图片容器 */
+.image-container {
+  @apply relative aspect-[4/3] md:aspect-[16/9] overflow-hidden rounded-lg;
+}
+
+.image-container img {
+  @apply absolute inset-0 w-full h-full object-cover transition-transform duration-500;
+}
+
+.image-container:hover img {
+  @apply scale-105;
+}
+
+/* 网格布局 */
+.grid-auto-fit {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
+}
+
+/* 文本样式 */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-light)];
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* 导航样式 */
+.nav-link {
+  @apply text-[var(--color-neutral-700)] hover:text-[var(--color-primary)] transition-colors duration-200;
+}
+
+.nav-link-active {
+  @apply text-[var(--color-primary)] font-semibold;
+}
+
+/* 页脚样式 */
+.footer {
+  @apply bg-[var(--color-neutral-900)] text-white py-16;
+}
+
+.footer-title {
+  @apply text-xl font-semibold mb-4;
+}
+
+.footer-link {
+  @apply text-[var(--color-neutral-400)] hover:text-white transition-colors duration-200;
+}
+
+/* 表单样式 */
+.form-input {
+  @apply w-full px-4 py-2 rounded-lg border border-[var(--color-neutral-300)] focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary-lighter)] outline-none transition-colors duration-200;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-[var(--color-neutral-700)] mb-1;
+}
+
+/* 菜单卡片样式 */
+.menu-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+.menu-card-image {
+  @apply relative aspect-[4/3] w-full;
+}
+
+.menu-card-content {
+  @apply p-6;
+}
+
+.menu-card-title {
+  @apply text-xl font-semibold text-[var(--color-neutral-900)] mb-2;
+}
+
+.menu-card-description {
+  @apply text-[var(--color-neutral-600)] text-sm;
+}
+
+/* 特色部分样式 */
+.feature-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8;
+}
+
+.feature-item {
+  @apply text-center p-6;
+}
+
+.feature-icon {
+  @apply w-16 h-16 mx-auto mb-4 text-[var(--color-primary)];
+}
+
+.feature-title {
+  @apply text-lg font-semibold mb-2;
+}
+
+.feature-description {
+  @apply text-[var(--color-neutral-600)];
+}

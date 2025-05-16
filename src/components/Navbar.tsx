@@ -22,7 +22,6 @@ export default function Navbar() {
 
   const aboutLinks = [
     { name: 'Our Story', href: '/about/our-story' },
-    { name: 'Our Mission', href: '/about/our-mission' },
     { name: 'Messages from Founder', href: '/about/messages-from-founder' },
   ];
 
@@ -114,7 +113,9 @@ export default function Navbar() {
                         <Link
                           key={link.name}
                           href={link.href}
-                          className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+                          className={`block px-4 py-2 transition-colors rounded-lg
+                            ${pathname === link.href ? 'bg-[#F5F9F5] text-[#2D492B] font-semibold' : 'text-gray-700 hover:bg-[#F5F9F5] hover:text-[#2D492B]'}
+                          `}
                         >
                           {link.name}
                         </Link>
@@ -133,7 +134,9 @@ export default function Navbar() {
                         <Link
                           key={link.name}
                           href={link.href}
-                          className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+                          className={`block px-4 py-2 transition-colors rounded-lg
+                            ${pathname === link.href ? 'bg-[#F5F9F5] text-[#2D492B] font-semibold' : 'text-gray-700 hover:bg-[#F5F9F5] hover:text-[#2D492B]'}
+                          `}
                         >
                           {link.name}
                         </Link>
@@ -180,8 +183,9 @@ export default function Navbar() {
                           <Link
                             key={link.name}
                             href={link.href}
-                            className="block text-gray-700 hover:text-green-700 transition-colors px-4"
-                            onClick={() => setIsMobileMenuOpen(false)}
+                            className={`block px-4 py-2 transition-colors rounded-lg
+                              ${pathname === link.href ? 'bg-[#F5F9F5] text-[#2D492B] font-semibold' : 'text-gray-700 hover:bg-[#F5F9F5] hover:text-[#2D492B]'}
+                            `}
                           >
                             {link.name}
                           </Link>
@@ -204,8 +208,9 @@ export default function Navbar() {
                           <Link
                             key={link.name}
                             href={link.href}
-                            className="block text-gray-700 hover:text-green-700 transition-colors px-4"
-                            onClick={() => setIsMobileMenuOpen(false)}
+                            className={`block px-4 py-2 transition-colors rounded-lg
+                              ${pathname === link.href ? 'bg-[#F5F9F5] text-[#2D492B] font-semibold' : 'text-gray-700 hover:bg-[#F5F9F5] hover:text-[#2D492B]'}
+                            `}
                           >
                             {link.name}
                           </Link>

@@ -5,9 +5,8 @@ import Image from "next/image";
 import { useState } from 'react';
 
 // 分类常量
-type Category = 'healthy' | 'vegetarian' | 'glutenfree';
+type Category = 'vegetarian' | 'glutenfree';
 const categories = [
-  { key: 'healthy', label: 'HEALTHY MEALS' },
   { key: 'vegetarian', label: 'VEGETARIAN MEALS' },
   { key: 'glutenfree', label: 'GLUTEN FREE MEALS' },
 ];
@@ -300,7 +299,7 @@ const allMenus = [
     description: 'Energy: 460 kcal | Protein: 20g | Fibre: 6g',
     details: [
       'Main Grain: Golden millet & white rice blend',
-      'Protein: Soy-based veggie ribs (homemade sweet & sour glaze with tomato, pineapple, vinegar, and reduced-sodium soy sauce)',
+      'Protein: Soy-based veggie ribs',
       'Vegetables: Seasonal Vegetables',
       'Health Rating: 🟢 90% 🟠 10% 🔴 0%',
       'NSW Category: ✅ Everyday'
@@ -314,13 +313,13 @@ const allMenus = [
 
 export default function MenuPage() {
   // 分类状态
-  const [selectedCategory, setSelectedCategory] = useState<Category>('healthy');
+  const [selectedCategory, setSelectedCategory] = useState<Category>('vegetarian');
 
   // 筛选菜品
   const filteredMenus = allMenus.filter(item => item.category === selectedCategory);
 
   return (
-    <main className="min-h-screen">
+    <main style={{ background: '#F8F6F1' }}>
       {/* Hero Section */}
       <section className="relative h-[60vh] -mt-40">
         <div className="absolute inset-0">
@@ -335,22 +334,16 @@ export default function MenuPage() {
         </div>
         <div className="relative h-full flex items-center justify-center text-center px-4 pt-56">
           <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Our Menu
-            </h1>
-            <p className="text-xl md:text-2xl text-white mb-8">
-              Delicious and nutritious meals for growing children
-            </p>
           </div>
         </div>
       </section>
 
       {/* Menu Section */}
-      <section className="py-16 bg-white relative">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">
           {/* 分类栏：移动端顶部横向滚动，桌面端左侧竖排 */}
           <aside
-            className="md:w-56 md:min-w-[160px] flex md:flex-col flex-row items-stretch bg-white border-r md:border-gray-200 shadow-sm pt-2 md:sticky md:top-0 md:z-10 overflow-x-auto md:overflow-visible"
+            className="md:w-72 md:min-w-[220px] flex md:flex-col flex-row items-stretch bg-white border-r md:border-gray-200 shadow-sm pt-2 md:sticky md:top-0 md:z-10 overflow-x-auto md:overflow-visible"
             style={{
               position: 'relative',
               top: undefined,
@@ -361,7 +354,10 @@ export default function MenuPage() {
               {categories.map(cat => (
                 <li key={cat.key} className="flex-1 min-w-[120px] md:min-w-0">
                   <button
-                    className={`w-full text-left px-4 py-2 rounded-lg font-semibold transition-colors duration-200 ${selectedCategory === cat.key ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700 hover:bg-green-50'}`}
+                    className={`w-full h-16 text-center flex items-center justify-center px-4 py-2 rounded-xl font-semibold transition-colors duration-200 text-lg md:text-base border
+                      ${selectedCategory === cat.key ? 'bg-[#D5ECD4] text-[#204B2A] border-none' : 'bg-white text-gray-500 border-gray-300 hover:bg-[#204B2A] hover:text-white'}
+                    `}
+                    style={{ fontWeight: 600, fontSize: 18 }}
                     onClick={() => setSelectedCategory(cat.key as Category)}
                   >
                     {cat.label}
@@ -371,27 +367,37 @@ export default function MenuPage() {
             </ul>
           </aside>
 
-          {/* 菜品列表：移动端单列，桌面端双列 */}
-          <div className="flex-1 md:ml-56 md:mt-0 mt-6">
-            <h2 className="text-3xl font-bold text-center mb-8">{categories.find(c => c.key === selectedCategory)?.label}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+          {/* 菜品列表：响应式3/2/1列 */}
+          <div className="flex-1 md:ml-0 md:mt-0 mt-6">
+            <h2 className="text-center mb-8" style={{ color: '#204B2A', fontWeight: 700, fontSize: 24 }}>
+              {categories.find(c => c.key === selectedCategory)?.label}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
               {filteredMenus.map((item) => (
-                <div key={item.id} className="bg-white rounded-xl shadow-lg overflow-hidden w-full max-w-xl flex flex-col">
+                <div
+                  key={item.id}
+                  className="bg-white rounded-xl shadow-md overflow-hidden w-full max-w-xl flex flex-col"
+                  style={{ borderRadius: 12, boxShadow: '0 2px 12px 0 rgba(60,80,60,0.06)' }}
+                >
                   <div className="relative aspect-[4/3] w-full">
                     <Image
                       src={item.image}
                       alt={item.name}
                       fill
                       className="object-cover rounded-t-xl"
-                      style={{ objectPosition: item.name === 'Rainbow Fried Rice with Chicken' || item.name === 'Lentil Patties Power Meal' ? 'center 80%' : 'center 70%' }}
+                      style={{ objectPosition: 'center 70%' }}
                     />
                   </div>
                   <div className="p-5 flex-1 flex flex-col">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.name}</h3>
-                    <p className="text-gray-600 mb-4 whitespace-nowrap overflow-x-auto">{item.description}</p>
+                    <h3 className="mb-2" style={{ color: '#204B2A', fontWeight: 600, fontSize: 18 }}>{item.name}</h3>
+                    <p className="mb-4" style={{ color: '#4D4D4D', fontSize: 14 }}>{item.description}</p>
                     <div className="space-y-2 mb-4 flex-1">
                       {item.details.map((detail, index) => (
-                        <p key={index} className="text-gray-700 text-sm">• {detail}</p>
+                        detail.includes('Health Rating') ? null : (
+                          <p key={index} style={{ color: '#4D4D4D', fontSize: 14 }}>
+                            {detail.includes('NSW') ? <span>NSW Category: ✅ Everyday</span> : detail}
+                          </p>
+                        )
                       ))}
                     </div>
                   </div>

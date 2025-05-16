@@ -68,18 +68,18 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="mt-0">
+    <main style={{ background: '#F8F6F1' }}>
       {/* Hero Section */}
-      <section className="relative h-[50vh]">
+      <section className="relative h-[50vh] py-24">
         <div className="absolute inset-0 bg-[url('/images/contact-hero.jpg')] bg-cover bg-top">
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
         <div className="relative container mx-auto px-4 h-full flex items-start pt-32">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold text-white/90 mb-6 leading-tight font-heading text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-white/90 mb-6 leading-tight font-heading text-center" style={{ color: '#204B2A' }}>
               Contact Us
             </h1>
-            <p className="text-xl text-white/70 text-center mb-6">
+            <p className="text-xl text-white/70 text-center mb-6" style={{ color: '#4D4D4D' }}>
               Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
             </p>
           </div>
@@ -87,38 +87,38 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Content Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-24" style={{ background: '#F8F6F1' }}>
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contact Information */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ color: '#204B2A' }}>Get in Touch</h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-green-700">Address</h3>
-                  <p className="text-gray-600">29-31 Burdett St<br />Hornsby NSW 2077</p>
+                  <h3 className="text-lg font-semibold text-green-700" style={{ color: '#204B2A' }}>Address</h3>
+                  <p className="text-gray-600" style={{ color: '#4D4D4D' }}>29-31 Burdett St<br />Hornsby NSW 2077</p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-green-700">Phone</h3>
-                  <p className="text-gray-600">0452 005 512</p>
+                  <h3 className="text-lg font-semibold text-green-700" style={{ color: '#204B2A' }}>Phone</h3>
+                  <p className="text-gray-600" style={{ color: '#4D4D4D' }}>0452 005 512</p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-green-700">Email</h3>
-                  <p className="text-gray-600">info@denature.org.au</p>
+                  <h3 className="text-lg font-semibold text-green-700" style={{ color: '#204B2A' }}>Email</h3>
+                  <p className="text-gray-600" style={{ color: '#4D4D4D' }}>info@denature.org.au</p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-green-700">Hours</h3>
-                  <p className="text-gray-600">Monday - Friday: 9:00 AM - 3:00 PM</p>
+                  <h3 className="text-lg font-semibold text-green-700" style={{ color: '#204B2A' }}>Hours</h3>
+                  <p className="text-gray-600" style={{ color: '#4D4D4D' }}>Monday - Friday: 9:00 AM - 3:00 PM</p>
                 </div>
               </div>
             </div>
 
             {/* Contact Form */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ color: '#204B2A' }}>Send us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700" style={{ color: '#204B2A' }}>Name</label>
                   <input
                     type="text"
                     id="name"
@@ -131,7 +131,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700" style={{ color: '#204B2A' }}>Email</label>
                   <input
                     type="email"
                     id="email"
@@ -144,7 +144,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700">Subject</label>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700" style={{ color: '#204B2A' }}>Subject</label>
                   <input
                     type="text"
                     id="subject"
@@ -157,7 +157,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700" style={{ color: '#204B2A' }}>Message</label>
                   <textarea
                     id="message"
                     name="message"
