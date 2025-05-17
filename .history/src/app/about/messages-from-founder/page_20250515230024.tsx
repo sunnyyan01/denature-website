@@ -22,7 +22,7 @@ export default function MessagesFromFounder() {
                 When my daughter Anna was just one year old, work pressures led me to make a difficult decision—having her temporarily cared for by relatives far away. But when she turned two, she suddenly became seriously ill. She experienced seizures, foamed at the mouth—it was terrifying. We rushed her to the hospital, but no doctor could clearly diagnose or treat her condition.
               </p>
               <blockquote className="border-l-4 pl-6 py-4 my-6 bg-[#f9f9f6] text-lg italic text-[#5A5A4A]" style={{ borderColor: '#E6E6D6' }}>
-                “If it happens again, she may suffer permanent brain damage.” the doctor warned us.
+                “If it happens again, she may suffer permanent brain damage.”
               </blockquote>
               <p>
                 As a mother, I couldn't accept that. I started looking for anything I could do—and that path led me to food.
@@ -46,7 +46,7 @@ export default function MessagesFromFounder() {
                 Today, I hope to make it easier for more people to access natural, balanced, wholesome, and delicious plant-based meals—whether they are busy professionals, families seeking better food choices, or anyone choosing a plant-based lifestyle.
               </p>
               <p>
-                <span className="font-semibold text-green-900">De Nature is more than just a box of meal.</span><br/>
+                <span className="font-semibold text-green-900">De Nature is more than just a lunchbox.</span><br/>
                 It's a way of thinking about food—and a quiet, confident commitment to better living.
               </p>
             </div>

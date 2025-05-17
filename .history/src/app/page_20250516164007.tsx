@@ -58,7 +58,7 @@ export default function Home() {
       </section>
 
       {/* Who We Serve Section */}
-      <section className="py-24" style={{ background: '#FFFFFF' }}>
+      <section className="py-24" style={{ background: '#F6F6F1' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 font-heading" style={{ color: '#1B3F2F' }}>Who We Serve</h2>
@@ -81,6 +81,40 @@ export default function Home() {
               </p>
               <p className="font-semibold italic" style={{ color: '#1B3F2F' }}>
                 Because food should nourish more than just the body—it should nourish lives.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Lunchbox Support Section */}
+      <section className="py-24" style={{ background: '#F2F3EE' }}>
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold mb-8 text-center" style={{ color: '#1E5631', fontWeight: 700 }}>
+              Still Wondering What to Pack for Your Child's Lunch Tomorrow?
+            </h2>
+            <div className="space-y-8" style={{ color: '#3F5142' }}>
+              <p className="text-center text-xl">
+                Busy mornings. Rising grocery costs. Endless responsibilities.
+              </p>
+              <p className="text-center text-xl">
+                Preparing a healthy lunch for your child shouldn't be a daily struggle.
+              </p>
+              <p className="text-center text-2xl font-bold" style={{ color: '#1E5631' }}>
+                De Nature Healthy Lunchbox is here to help.
+              </p>
+              <p className="text-center text-lg">
+                We're a nonprofit organization providing fresh, nutritious, and lovingly prepared lunchboxes—because every child deserves a healthy meal at school, and every parent deserves peace of mind.
+              </p>
+              <p className="text-center text-lg">
+                No matter your circumstances, we're here to support you with natural, balanced meals that fuel young minds and growing bodies.
+              </p>
+              <p className="text-center text-xl font-bold" style={{ color: '#1E5631' }}>
+                It's more than just food.
+              </p>
+              <p className="text-center text-xl font-bold" style={{ color: '#1E5631' }}>
+                It's care, energy, and dignity—delivered daily.
               </p>
             </div>
           </div>

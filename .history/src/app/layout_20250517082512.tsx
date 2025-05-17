@@ -56,20 +56,10 @@ export default function RootLayout({
             </div>
             {/* 社交图标 */}
             <div className="flex items-center space-x-4">
-              <a 
-                href="https://www.facebook.com/profile.php?id=61575015428081" 
-                className="text-[#2E5E4E] hover:text-[#4A7C59]"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="#" className="text-[#2E5E4E] hover:text-[#4A7C59]">
                 <FiFacebook className="w-5 h-5" />
               </a>
-              <a 
-                href="https://www.instagram.com/denature_healthy_meals/" 
-                className="text-[#2E5E4E] hover:text-[#4A7C59]"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="#" className="text-[#2E5E4E] hover:text-[#4A7C59]">
                 <FiInstagram className="w-5 h-5" />
               </a>
               <a href="#" className="text-[#2E5E4E] hover:text-[#4A7C59]">

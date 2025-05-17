@@ -48,7 +48,15 @@ export default function Navbar() {
             </a>
           </div>
           <div className="flex space-x-4">
-            <a href="https://www.facebook.com/profile.php?id=61575015428081" className="hover:text-green-200" target="_blank" rel="noopener noreferrer">
+            <a 
+              href="https://www.facebook.com/profile.php?id=61575015428081" 
+              className="hover:text-green-200" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <FiFacebook className="w-5 h-5" />
             </a>
             <a href="https://www.instagram.com/denature_healthy_meals/" className="hover:text-green-200" target="_blank" rel="noopener noreferrer">

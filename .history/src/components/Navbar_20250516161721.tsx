@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { FiFacebook, FiInstagram, FiTwitter, FiLinkedin } from 'react-icons/fi';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -49,16 +48,16 @@ export default function Navbar() {
           </div>
           <div className="flex space-x-4">
             <a href="https://www.facebook.com/profile.php?id=61575015428081" className="hover:text-green-200" target="_blank" rel="noopener noreferrer">
-              <FiFacebook className="w-5 h-5" />
+              <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.instagram.com/denature_healthy_meals/" className="hover:text-green-200" target="_blank" rel="noopener noreferrer">
-              <FiInstagram className="w-5 h-5" />
+            <a href="#" className="hover:text-green-200">
+              <i className="fab fa-twitter"></i>
             </a>
-            <a href="#" className="hover:text-green-200" target="_blank" rel="noopener noreferrer">
-              <FiTwitter className="w-5 h-5" />
+            <a href="#" className="hover:text-green-200">
+              <i className="fab fa-instagram"></i>
             </a>
-            <a href="#" className="hover:text-green-200" target="_blank" rel="noopener noreferrer">
-              <FiLinkedin className="w-5 h-5" />
+            <a href="#" className="hover:text-green-200">
+              <i className="fab fa-linkedin-in"></i>
             </a>
           </div>
         </div>

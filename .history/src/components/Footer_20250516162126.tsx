@@ -25,20 +25,10 @@ export default function Footer() {
           {/* 右侧：社交图标+链接 */}
           <div className="flex flex-col items-center md:items-end gap-2">
             <div className="flex space-x-4 mb-1">
-              <a 
-                href="https://www.facebook.com/profile.php?id=61575015428081" 
-                className="group text-[#356A59] transition-transform duration-200 hover:scale-110" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
+              <a href="https://www.facebook.com/profile.php?id=61575015428081" className="group text-[#356A59] transition-transform duration-200 hover:scale-110" target="_blank" rel="noopener noreferrer">
                 <FiFacebook className="w-6 h-6 group-hover:bg-[#356A59] group-hover:text-white rounded-full p-1 transition-colors duration-200" />
               </a>
-              <a 
-                href="https://www.instagram.com/denature_healthy_meals/" 
-                className="group text-[#356A59] transition-transform duration-200 hover:scale-110" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
+              <a href="https://www.instagram.com/denature_healthy_meals/" className="group text-[#356A59] transition-transform duration-200 hover:scale-110" target="_blank" rel="noopener noreferrer">
                 <FiInstagram className="w-6 h-6 group-hover:bg-[#356A59] group-hover:text-white rounded-full p-1 transition-colors duration-200" />
               </a>
               <a href="#" className="group text-[#356A59] transition-transform duration-200 hover:scale-110">

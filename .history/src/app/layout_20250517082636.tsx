@@ -64,12 +64,7 @@ export default function RootLayout({
               >
                 <FiFacebook className="w-5 h-5" />
               </a>
-              <a 
-                href="https://www.instagram.com/denature_healthy_meals/" 
-                className="text-[#2E5E4E] hover:text-[#4A7C59]"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="#" className="text-[#2E5E4E] hover:text-[#4A7C59]">
                 <FiInstagram className="w-5 h-5" />
               </a>
               <a href="#" className="text-[#2E5E4E] hover:text-[#4A7C59]">

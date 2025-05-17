@@ -30,15 +30,13 @@ export default function Footer() {
                 className="group text-[#356A59] transition-transform duration-200 hover:scale-110" 
                 target="_blank" 
                 rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
               >
                 <FiFacebook className="w-6 h-6 group-hover:bg-[#356A59] group-hover:text-white rounded-full p-1 transition-colors duration-200" />
               </a>
-              <a 
-                href="https://www.instagram.com/denature_healthy_meals/" 
-                className="group text-[#356A59] transition-transform duration-200 hover:scale-110" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
+              <a href="https://www.instagram.com/denature_healthy_meals/" className="group text-[#356A59] transition-transform duration-200 hover:scale-110" target="_blank" rel="noopener noreferrer">
                 <FiInstagram className="w-6 h-6 group-hover:bg-[#356A59] group-hover:text-white rounded-full p-1 transition-colors duration-200" />
               </a>
               <a href="#" className="group text-[#356A59] transition-transform duration-200 hover:scale-110">
