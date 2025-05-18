@@ -32,10 +32,17 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative h-[100vh] w-full">
-        <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center">
-        </div>
-        <div className="relative container mx-auto px-4 h-screen flex items-start pt-32">
+      <section className="relative w-full aspect-[4/3] sm:aspect-[16/6] sm:h-[100vh]">
+        <Image
+          src="/images/hero-bg.jpg"
+          alt="Menu Hero"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover' }}
+        />
+        <div className="relative container mx-auto px-4 h-full flex items-start pt-32">
           <div className="max-w-6xl mx-auto w-full pt-8 flex flex-col items-center">
             {/* Hero 按钮组整体下移，紧贴黑色文字下方，居中显示 */}
           </div>
