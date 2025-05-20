@@ -18,8 +18,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "DE NATURE - Sydney Lunch Program",
-  description: "Providing nutritious meals to children in need across Sydney",
+  title: "DE NATURE - Vegetarian Meals & Plant-Based Catering",
+  description: "Delicious, nutritious vegetarian meals and plant-based catering for schools, families, and businesses in Sydney. Fresh, healthy, and sustainable food for everyone.",
   verification: {
     google: "OqLlSQNFE1spUS93SXK13pK8N_CO4S7m2l7H1rPvJmY",
   },

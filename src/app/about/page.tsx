@@ -91,49 +91,32 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Sydney Lunch Program Section */}
+          {/* Vegetarian Meals Section */}
           <section className="py-16 bg-white">
             <div className="container mx-auto px-4">
               <h2 className="text-3xl font-bold text-center mb-12 text-green-700" style={{ color: '#204B2A' }}>
-                Sydney Lunch Program – Providing Nutritional and Delicious Meals for Children
+                Vegetarian Meals – Nutritious, Delicious, and Sustainable Food for All
               </h2>
-              <div className="max-w-3xl mx-auto space-y-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-green-700" style={{ color: '#204B2A' }}>Project Overview:</h3>
-                  <p style={{ color: '#4D4D4D' }}>
-                    In Sydney, many children from low-income and refugee families struggle to access balanced and diverse meals due to the high cost of living. We aim to provide these children with healthy, delicious lunches, helping them stay focused on learning and activities.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-green-700" style={{ color: '#204B2A' }}>Our Goal:</h3>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li style={{ color: '#4D4D4D' }}>To provide low-income, refugee, and special education school children with nutritious, varied, and delicious meals.</li>
-                    <li style={{ color: '#4D4D4D' }}>By offering diverse meals, we aim to improve children's physical health and academic performance.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-green-700" style={{ color: '#204B2A' }}>Target Groups:</h3>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li style={{ color: '#4D4D4D' }}>Children from low-income families</li>
-                    <li style={{ color: '#4D4D4D' }}>Children from refugee families</li>
-                    <li style={{ color: '#4D4D4D' }}>Special education students</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-green-700" style={{ color: '#204B2A' }}>How You Can Help:</h3>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li style={{ color: '#4D4D4D' }}><span className="font-semibold">Donate Vegetables and Ingredients:</span> We invite organizations to donate fresh vegetables and food supplies to help us provide nutritious meals for children.</li>
-                    <li style={{ color: '#4D4D4D' }}><span className="font-semibold">Volunteer:</span> Join our team of volunteers and contribute your time and effort to support the program.</li>
-                    <li style={{ color: '#4D4D4D' }}><span className="font-semibold">Spread the Word:</span> Share the project to help us reach more supporters and participants.</li>
-                  </ul>
-                </div>
-
-                <p className="text-center font-semibold mt-8" style={{ color: '#4D4D4D' }}>
-                  Your support can make a lasting impact on these children's future!
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-green-700" style={{ color: '#204B2A' }}>Project Overview:</h3>
+                <p style={{ color: '#4D4D4D' }}>
+                  In Sydney, many people are seeking healthy, plant-based meal options for themselves and their families. Our mission is to provide everyone—children, adults, and organizations—with fresh, delicious vegetarian meals that support well-being and sustainability.
                 </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-green-700" style={{ color: '#204B2A' }}>Our Goal:</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li style={{ color: '#4D4D4D' }}>To make nutritious, plant-based meals accessible and enjoyable for all age groups.</li>
+                  <li style={{ color: '#4D4D4D' }}>To promote a healthy lifestyle and environmental sustainability through vegetarian food choices.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-green-700" style={{ color: '#204B2A' }}>Target Groups:</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li style={{ color: '#4D4D4D' }}>Families and individuals seeking healthy vegetarian options</li>
+                  <li style={{ color: '#4D4D4D' }}>Schools and organizations looking for plant-based catering</li>
+                  <li style={{ color: '#4D4D4D' }}>Anyone interested in sustainable, delicious food</li>
+                </ul>
               </div>
             </div>
           </section>
