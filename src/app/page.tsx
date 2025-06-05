@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Leaf, Scale, Recycle, Sprout } from "lucide-react";
 import PrimaryButton from "../components/PrimaryButton";
+import { useRef, useEffect, useState } from "react";
 
 const coreValues = [
   {
@@ -29,6 +30,15 @@ const coreValues = [
 ];
 
 export default function Home() {
+  const textRef = useRef<HTMLDivElement>(null);
+  const [videoHeight, setVideoHeight] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (textRef.current) {
+      setVideoHeight(textRef.current.offsetHeight);
+    }
+  }, []);
+
   return (
     <main>
       {/* Hero Section */}
@@ -64,8 +74,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Dr. Eddie Ramirez Endorsement Section */}
+      <section className="py-20" style={{ background: '#FFFFFF' }}>
+        <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-start gap-10">
+          {/* 视频区域 */}
+          <div
+            className="w-full md:w-1/3 flex justify-center"
+            style={videoHeight ? { height: videoHeight } : {}}
+          >
+            <video
+              src="/videos/dr-eddie-ramirez.mp4"
+              controls
+              className="rounded-lg shadow-lg h-full max-h-[600px] aspect-[9/16] bg-gray-200"
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
+          {/* 文字区域 */}
+          <div
+            className="w-full md:w-2/3 text-center md:text-left flex flex-col justify-center"
+            ref={textRef}
+          >
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 font-heading" style={{ color: '#1B3F2F' }}>
+              <span className="block text-green-700" style={{ fontWeight: 700 }}>
+                Endorsed by Dr. Eddie Ramirez
+              </span>
+            </h2>
+            <div className="space-y-6 text-lg leading-relaxed" style={{ color: '#4B6155' }}>
+              <p>
+                We are honored to receive recognition from Dr. Eddie Ramirez — an internationally respected physician, lifestyle medicine expert, author, and passionate advocate of plant-based living.
+              </p>
+              <p>
+                As a vegetarian and global health educator, Dr. Ramirez affirms the vital role of nutritious, plant-based meals in supporting focus, vitality, and overall wellbeing.
+              </p>
+              <p>
+                His endorsement of De Nature reinforces our belief that healthy food can be both accessible and transformative — not just for individuals, but for entire communities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Who We Serve Section */}
-      <section className="py-24" style={{ background: '#FFFFFF' }}>
+      <section className="py-24" style={{ background: '#F6F6F1' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 font-heading" style={{ color: '#1B3F2F' }}>Who We Serve</h2>
