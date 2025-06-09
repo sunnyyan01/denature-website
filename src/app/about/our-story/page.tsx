@@ -7,22 +7,6 @@ export default function OurStory() {
             <h2 className="text-3xl md:text-4xl font-bold mb-10 font-heading text-center" style={{ color: '#204B2A', letterSpacing: 1 }}>
               Our Story
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <div className="relative h-[400px] rounded-lg overflow-hidden">
-                <img
-                  src="/images/about/our-story-1.jpg"
-                  alt="Our Story Image 1"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="relative h-[400px] rounded-lg overflow-hidden">
-                <img
-                  src="/images/about/our-story-2.jpg"
-                  alt="Our Story Image 2"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
             <div className="space-y-8 text-[17px] leading-8" style={{ color: '#4D4D4D' }}>
               <p>
                 Our story began with a simple yet unwavering belief:<br />
