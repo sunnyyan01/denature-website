@@ -1,25 +1,56 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Key, useContext } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { FiFacebook, FiInstagram, FiTwitter, FiLinkedin } from 'react-icons/fi';
+import { useRouter } from 'next/navigation';
+import {
+  Button,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  DropdownItem,
+  DropdownTrigger,
+  Dropdown,
+  DropdownMenu,
+} from "@heroui/react";
+import { AuthContext, DBContext } from '@/app/providers';
+import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
+import { doc, getDoc } from 'firebase/firestore';
 
-export default function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isGetInvolvedOpen, setIsGetInvolvedOpen] = useState(false);
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
-  const pathname = usePathname();
+function Logo() {
+  return (
+    <Link href="/">
+      <img
+        src="/images/logo/logo-clear.png"
+        alt="DE NATURE Logo"
+        className="h-32 w-auto"
+      />
+    </Link>
+  )
+}
 
-  const navigation = [
-    { name: 'HOME', href: '/' },
-    { name: 'MENU', href: '/menu' },
-    { name: 'ABOUT US', href: '/about' },
-    { name: 'GET INVOLVED', href: '/get-involved' },
-    { name: 'CONTACT', href: '/contact' },
-  ];
+export default function Navigation() {
+  const router = useRouter();
+
+  const auth = useContext(AuthContext);
+  const [user] = useAuthState(auth);
+  const [admin, setAdmin] = useState(false);
+  const [logout] = useSignOut(auth);
+
+  const db = useContext(DBContext);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (!user) return;
+      let userInfo = await getDoc(doc(db, "users", user.uid));
+      if (!userInfo.exists()) return;
+      setAdmin(userInfo.data()!["admin"]);
+    }
+    fetchUserData();
+  }, [user])
 
   const aboutLinks = [
     { name: 'Our Story', href: '/about/our-story' },
@@ -34,205 +65,152 @@ export default function Navbar() {
     { name: 'Partner With Us', href: '/get-involved/partner-with-us' },
   ];
 
+  const onDropdownClick = (key: any) => {
+    router.push(key);
+  }
+  const onProfileClick = (key: any) => {
+    if (key == 'logout') {
+      logout();
+      router.push("/");
+    } else {
+      router.push("/" + key);
+    }
+  }
+
+
   return (
-    <>
-      {/* Social Info Bar */}
-      <div className="bg-green-600 text-white py-2">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex space-x-4">
-            <a href="tel:0410811935" className="hover:text-green-200">
-              <i className="fas fa-phone mr-2"></i>0410 811 935
-            </a>
-            <a href="mailto:info@denature.com" className="hover:text-green-200">
-              <i className="fas fa-envelope mr-2"></i>info@denature.com
-            </a>
-          </div>
-          <div className="flex space-x-4">
-            <a href="https://www.facebook.com/profile.php?id=61575015428081" className="hover:text-green-200" target="_blank" rel="noopener noreferrer">
-              <FiFacebook className="w-5 h-5" />
-            </a>
-            <a href="https://www.instagram.com/denature_healthy_meals/" className="hover:text-green-200" target="_blank" rel="noopener noreferrer">
-              <FiInstagram className="w-5 h-5" />
-            </a>
-            <a href="#" className="hover:text-green-200" target="_blank" rel="noopener noreferrer">
-              <FiTwitter className="w-5 h-5" />
-            </a>
-            <a href="#" className="hover:text-green-200" target="_blank" rel="noopener noreferrer">
-              <FiLinkedin className="w-5 h-5" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navigation */}
-      <nav className="absolute w-full z-40 transition-all duration-300 bg-transparent">
-        <div className="container mx-auto px-12">
-          <div className="flex items-center justify-between h-32">
-            <Link href="/" className="flex items-center mt-8">
-              <img 
-                src="/images/logo/logo-clear.png" 
-                alt="DE NATURE Logo" 
-                className="h-32 w-auto"
-              />
-            </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navigation.map((item) => (
-                <div key={item.name} className="relative group">
-                  {item.name === 'ABOUT US' || item.name === 'GET INVOLVED' ? (
-                    <button
-                      className={`text-[#DEB887] hover:text-[#D2B48C] transition-colors text-lg font-bold ${
-                        pathname === item.href ? 'text-[#D2B48C]' : ''
-                      }`}
-                      onMouseEnter={() => item.name === 'ABOUT US' ? setIsAboutOpen(true) : setIsGetInvolvedOpen(true)}
-                      onMouseLeave={() => item.name === 'ABOUT US' ? setIsAboutOpen(false) : setIsGetInvolvedOpen(false)}
-                    >
-                      {item.name}
-                      <span className="absolute -top-2 left-0 w-full h-0.5 bg-current transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
-                    </button>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className={`text-[#DEB887] hover:text-[#D2B48C] transition-colors text-lg font-bold ${
-                        pathname === item.href ? 'text-[#D2B48C]' : ''
-                      }`}
-                    >
-                      {item.name}
-                      <span className="absolute -top-2 left-0 w-full h-0.5 bg-current transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
-                    </Link>
-                  )}
-                  {item.name === 'ABOUT US' && (
-                    <div 
-                      className={`absolute top-full left-0 w-48 bg-white/80 backdrop-blur-sm shadow-lg rounded-lg py-2 transition-all duration-200 ${
-                        isAboutOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-                      }`}
-                      onMouseEnter={() => setIsAboutOpen(true)}
-                      onMouseLeave={() => setIsAboutOpen(false)}
-                    >
-                      {aboutLinks.map((link) => (
-                        <Link
-                          key={link.name}
-                          href={link.href}
-                          className={`block px-4 py-2 transition-colors rounded-lg
-                            ${pathname === link.href ? 'bg-[#F5F9F5] text-[#2D492B] font-semibold' : 'text-gray-700 hover:bg-[#F5F9F5] hover:text-[#2D492B]'}
-                          `}
-                        >
-                          {link.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                  {item.name === 'GET INVOLVED' && (
-                    <div 
-                      className={`absolute top-full left-0 w-48 bg-white/80 backdrop-blur-sm shadow-lg rounded-lg py-2 transition-all duration-200 ${
-                        isGetInvolvedOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-                      }`}
-                      onMouseEnter={() => setIsGetInvolvedOpen(true)}
-                      onMouseLeave={() => setIsGetInvolvedOpen(false)}
-                    >
-                      {getInvolvedLinks.map((link) => (
-                        <Link
-                          key={link.name}
-                          href={link.href}
-                          className={`block px-4 py-2 transition-colors rounded-lg
-                            ${pathname === link.href ? 'bg-[#F5F9F5] text-[#2D492B] font-semibold' : 'text-gray-700 hover:bg-[#F5F9F5] hover:text-[#2D492B]'}
-                          `}
-                        >
-                          {link.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden text-black"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-          <div className="py-4 space-y-4 bg-white/80 backdrop-blur-sm">
-            {navigation.map((item) => (
-              <div key={item.name}>
-                {item.name === 'ABOUT US' ? (
-                  <div>
-                    <button
-                      onClick={() => setIsAboutOpen(!isAboutOpen)}
-                      className="text-gray-700 hover:text-green-700 transition-colors flex items-center justify-between w-full px-4"
-                    >
-                      {item.name}
-                      <ChevronDown className={`w-4 h-4 transition-transform ${isAboutOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {isAboutOpen && (
-                      <div className="pl-4 space-y-2 mt-2">
-                        {aboutLinks.map((link) => (
-                          <Link
-                            key={link.name}
-                            href={link.href}
-                            className={`block px-4 py-2 transition-colors rounded-lg
-                              ${pathname === link.href ? 'bg-[#F5F9F5] text-[#2D492B] font-semibold' : 'text-gray-700 hover:bg-[#F5F9F5] hover:text-[#2D492B]'}
-                            `}
-                          >
-                            {link.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : item.name === 'GET INVOLVED' ? (
-                  <div>
-                    <button
-                      onClick={() => setIsGetInvolvedOpen(!isGetInvolvedOpen)}
-                      className="text-gray-700 hover:text-green-700 transition-colors flex items-center justify-between w-full px-4"
-                    >
-                      {item.name}
-                      <ChevronDown className={`w-4 h-4 transition-transform ${isGetInvolvedOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {isGetInvolvedOpen && (
-                      <div className="pl-4 space-y-2 mt-2">
-                        {getInvolvedLinks.map((link) => (
-                          <Link
-                            key={link.name}
-                            href={link.href}
-                            className={`block px-4 py-2 transition-colors rounded-lg
-                              ${pathname === link.href ? 'bg-[#F5F9F5] text-[#2D492B] font-semibold' : 'text-gray-700 hover:bg-[#F5F9F5] hover:text-[#2D492B]'}
-                            `}
-                          >
-                            {link.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="block text-gray-700 hover:text-green-700 transition-colors px-4"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </nav>
-    </>
+    <Navbar className="w-full transition-all duration-300 flex items-center">
+      <NavbarBrand>
+        <Logo />
+      </NavbarBrand>
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="/">
+            Home
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="/menu">
+            Menu
+          </Link>
+        </NavbarItem>
+        <Dropdown>
+          <NavbarItem>
+            <DropdownTrigger>
+              <Button
+                disableRipple
+                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                endContent={<ChevronDown fill="currentColor" size={16} />}
+                radius="sm"
+                variant="light"
+              >
+                About Us
+              </Button>
+            </DropdownTrigger>
+          </NavbarItem>
+          <DropdownMenu
+            aria-label="About Us menu"
+            itemClasses={{
+              base: "gap-4",
+            }}
+            onAction={onDropdownClick}
+          >
+            {
+              aboutLinks.map(({ name, href }) => (
+                <DropdownItem
+                  key={href}
+                >
+                  {name}
+                </DropdownItem>
+              ))
+            }
+          </DropdownMenu>
+        </Dropdown>
+        <Dropdown>
+          <NavbarItem>
+            <DropdownTrigger>
+              <Button
+                disableRipple
+                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                endContent={<ChevronDown fill="currentColor" size={16} />}
+                radius="sm"
+                variant="light"
+              >
+                Get Involved
+              </Button>
+            </DropdownTrigger>
+          </NavbarItem>
+          <DropdownMenu
+            aria-label="Get involved menu"
+            itemClasses={{
+              base: "gap-4",
+            }}
+            onAction={onDropdownClick}
+          >
+            {
+              getInvolvedLinks.map(({ name, href }) => (
+                <DropdownItem
+                  key={href}
+                >
+                  {name}
+                </DropdownItem>
+              ))
+            }
+          </DropdownMenu>
+        </Dropdown>
+        <NavbarItem>
+          <Link color="foreground" href="/contact">
+            Contact
+          </Link>
+        </NavbarItem>
+        <Dropdown>
+          <NavbarItem>
+            <DropdownTrigger>
+              <Button
+                disableRipple
+                className="p-2 flex align-center ml-2 rounded-lg"
+                radius="sm"
+                variant="light"
+              >
+                {
+                  user && <Image
+                    className='rounded-full'
+                    src={user.photoURL || "/icons/default-profile.webp"}
+                    alt="User Profile Picture"
+                    width="40"
+                    height="40"
+                  />
+                }
+                {user ? <p>{user.displayName}</p> : <i>Signed out</i>}
+              </Button>
+            </DropdownTrigger>
+          </NavbarItem>
+          <DropdownMenu
+            aria-label="User Menu"
+            itemClasses={{
+              base: "gap-4",
+            }}
+            onAction={onProfileClick}
+          >
+            <>
+            {
+              user && <>
+                <DropdownItem key="orders">My Orders</DropdownItem>
+                {admin && <DropdownItem key="order-admin">Order Admin</DropdownItem>}
+                {admin && <DropdownItem key="menu-admin">Menu Admin</DropdownItem>}
+                <DropdownItem key="logout">Logout</DropdownItem>
+              </>
+            }
+            {
+              !user && <>
+                <DropdownItem key="login">Login</DropdownItem>
+                <DropdownItem key="register">Register</DropdownItem>
+              </>
+            }
+            </>
+          </DropdownMenu>
+        </Dropdown>
+      </NavbarContent>
+    </Navbar>
   );
 } 

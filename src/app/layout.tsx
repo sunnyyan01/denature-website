@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import Navigation from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Phone, Mail } from "lucide-react";
 import { FiFacebook, FiInstagram, FiTwitter } from 'react-icons/fi';
 import { StagewiseToolbar } from '@stagewise/toolbar-next';
+import { Providers } from "./providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,26 +42,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${poppins.variable} font-sans bg-background text-text`}>
+      <body className={`${inter.variable} ${poppins.variable} font-sans bg-background text-text min-h-screen min-w-screen`}>
         {process.env.NODE_ENV === 'development' && <StagewiseToolbar config={stagewiseConfig} />}
-        {/* 顶部社交信息栏 */}
+        <Providers>
         <div
-          className="fixed top-0 left-0 right-0 z-50"
+          className="z-50"
           style={{
             background: '#F5F3ED',
             height: '56px',
             borderBottom: '1px solid #E0E0E0',
             fontFamily: "'Inter', 'Lato', sans-serif",
+            zIndex: 50,
           }}
         >
-          <div className="container flex items-center justify-between h-full px-4">
-            {/* 联系方式 */}
-            <div className="flex items-center space-x-6 text-[#2E5E4E] text-sm">
-              <a href="tel:0410811935" className="hover:underline">0410 811 935</a>
-              <span className="hidden sm:inline">|</span>
-              <a href="mailto:info@denature.org.au" className="hover:underline">info@denature.org.au</a>
-            </div>
-            {/* 社交图标 */}
+          <div className="container flex items-center justify-end h-full px-4">
             <div className="flex items-center space-x-4">
               <a 
                 href="https://www.facebook.com/profile.php?id=61575015428081" 
@@ -82,18 +77,22 @@ export default function RootLayout({
                 <FiTwitter className="w-5 h-5" />
               </a>
             </div>
+            <div className="flex items-center space-x-6 text-[#2E5E4E] text-sm ml-6">
+              <a href="tel:0410811935" className="hover:underline">0410 811 935</a>
+              <span className="hidden sm:inline">|</span>
+              <a href="mailto:info@denature.org.au" className="hover:underline">info@denature.org.au</a>
+            </div>
           </div>
         </div>
 
-        {/* Navigation and Content */}
-        <div className="relative">
-          <Navbar />
-          <main>
+        <Navigation />
+
+        <main>
             {children}
-          </main>
-        </div>
+        </main>
 
         <Footer />
+        </Providers>
       </body>
     </html>
   );
