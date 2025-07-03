@@ -3,15 +3,20 @@
 
 import { friendlyAuthError } from '@/lib/firebase/auth';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { FormEvent, MouseEventHandler, useContext, useEffect, useState } from 'react';
+import { FormEvent, MouseEventHandler, use, useContext, useEffect, useState } from 'react';
 import { AuthContext, DBContext } from '../providers';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { UserCredential } from 'firebase/auth';
 import { Button } from '@heroui/react';
 
-export default function LoginPage() {
-  const params = useSearchParams();
+export default function LoginPage(
+  {
+    searchParams
+  } : {
+    searchParams: Promise<{returnTo: string}>,
+}) {
+  const { returnTo } = use(searchParams);
   const router = useRouter();
 
   const db = useContext(DBContext);
@@ -45,8 +50,8 @@ export default function LoginPage() {
       email: user.email!,
     })
     let resp = await fetch(
-        "/api/customer/new" + queryParams.toString(), 
-        {method: "POST"}
+      "/api/customer/new" + queryParams.toString(),
+      { method: "POST" }
     );
     let stripe_id = (await resp.json()).id;
     setDoc(
@@ -59,11 +64,10 @@ export default function LoginPage() {
   }
 
   useEffect(() => {
-    let returnTo = params.get("return-to") || "menu";
     if (googleUser)
       setUpNewUser(googleUser);
     if (emailUser || googleUser)
-      router.push("/" + returnTo);
+      router.push("/" + (returnTo || "menu"));
   }, [emailUser, googleUser]);
 
   return (

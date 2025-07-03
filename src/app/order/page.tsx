@@ -1,20 +1,24 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { useContext, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { use, useContext, useEffect } from "react";
 import { DBContext } from "../providers";
 import { deleteDoc, doc } from "firebase/firestore";
 
-export default function OrderConfirmationPage() {
+export default function OrderConfirmationPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ status: string, orderId: string}>,
+}) {
   const db = useContext(DBContext);
 
-  const searchParams = useSearchParams();
+  const {status, orderId} = use(searchParams);
   const router = useRouter();
 
   useEffect(() => {
-    if (searchParams.get("status") == "cancelled" && searchParams.get("orderId")) {
-      deleteDoc(doc(db, "orders", searchParams.get("orderId")!));
-    } else if (searchParams.get("status") == "success") {
+    if (status == "cancelled" && orderId) {
+      deleteDoc(doc(db, "orders", orderId));
+    } else if (status == "success") {
       window.localStorage.removeItem("cart");
       window.localStorage.removeItem("timeslot");
     }
@@ -29,22 +33,22 @@ export default function OrderConfirmationPage() {
           </svg>
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 font-inter">
-            {searchParams.get("status") === "success" ? "Order Confirmed!" : "Order Cancelled"}
+            {status === "success" ? "Order Confirmed!" : "Order Cancelled"}
         </h1>
         <p className="text-lg text-gray-600 mb-6 font-inter">
           {
-            searchParams.get("status") === "success" &&
+            status === "success" &&
             "Thank you for your purchase. Your order has been successfully placed."
           }
           {
-            searchParams.get("status") === "cancelled" &&
+            status === "cancelled" &&
             "Your order has been cancelled."
           }
         </p>
         {
-          searchParams.get("status") === "success" &&
+          status === "success" &&
           <p className="text-md font-medium text-gray-700 mb-8 font-inter">
-            Your Order ID: <span className="text-blue-600 font-semibold">{searchParams.get("orderId")}</span>
+            Your Order ID: <span className="text-blue-600 font-semibold">{orderId}</span>
           </p>
         }
         <button

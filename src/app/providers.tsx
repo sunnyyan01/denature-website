@@ -27,7 +27,7 @@ export const DBContext = createContext<Firestore>(db);
 export const AuthContext = createContext<Auth>(auth);
 export const StorageContext = createContext<FirebaseStorage>(storage);
 
-export function Providers({ children }) {
+export function Providers({ children }: {children: React.ReactNode}) {
   return (
     <AuthContext.Provider value={auth}>
         <DBContext.Provider value={db}>
