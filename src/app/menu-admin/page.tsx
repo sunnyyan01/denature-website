@@ -95,7 +95,7 @@ export default function MenuAdminPage() {
 
             </Button>
           </DropdownTrigger>
-          <DropdownMenu onAction={setCategory}>
+          <DropdownMenu onAction={key => setCategory(key as string)}>
             {Object.entries(categories).map(([id, cat]) => (
               <DropdownItem key={id}>
                 {cat}

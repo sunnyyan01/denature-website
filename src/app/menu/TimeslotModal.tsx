@@ -56,7 +56,7 @@ export const TimeslotModal: React.FC<TimeslotModalProps> = ({ timeslots, open, s
                 {selected == 0 ? "None selected" : timeFormat(selected)}
               </Button>
             </DropdownTrigger>
-            <DropdownMenu aria-label="Timeslot Menu" onAction={setSelected}>
+            <DropdownMenu aria-label="Timeslot Menu" onAction={(key) => setSelected(key as number)}>
               {slotList.map(t => (
                 <DropdownItem key={t}>{timeFormat(t)}</DropdownItem>
               ))}

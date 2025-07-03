@@ -5,18 +5,18 @@ import { stripe } from '@/lib/stripe'
 
 export async function POST(request: NextRequest) {
   try {
-    const headersList = await headers()
-    const origin = headersList.get('origin')
+    const headersList = await headers();
+    const origin = headersList.get('origin');
 
     let params = new URL(request.url!).searchParams;
     let orderId = params.get("orderId");
     let customerId = params.get("customerId");
-    let orderTotal = params.get("orderTotal");
+    let orderTotal = parseInt(params.get("orderTotal") as string);
 
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
-      client_reference_id: orderId,
-      customer: customerId,
+      client_reference_id: orderId!,
+      customer: customerId!,
       shipping_address_collection: {
         allowed_countries: ['AU'],
       },
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
       mode: 'payment',
       success_url: `${origin}/order?orderId=${orderId}&sessionId={CHECKOUT_SESSION_ID}&status=success`,
       cancel_url: `${origin}/order?orderId=${orderId}&status=cancelled`,
-    });
+    }, undefined);
     return NextResponse.json(session);
   } catch (err: any) {
     return NextResponse.json(

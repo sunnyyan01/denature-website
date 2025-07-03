@@ -2,7 +2,7 @@
 'use client'; // This directive is necessary for client-side components in the App Router
 
 import { friendlyAuthError } from '@/lib/firebase/auth';
-import { FormEvent, MouseEventHandler, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { AuthContext, DBContext } from '../providers';
 import { useRouter } from 'next/navigation';

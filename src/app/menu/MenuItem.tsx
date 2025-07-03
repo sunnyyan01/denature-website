@@ -7,7 +7,7 @@ import { getDownloadURL, ref } from 'firebase/storage';
 import { getCurTime } from '@/utils/time';
 import { HANDLING_TIME } from '@/utils/globals';
 
-const NutritionalInfoBox: React.FC<{ info: Record<string, string> }> = ({ info }) => (
+const NutritionalInfoBox: React.FC<{ info: Record<string, number> }> = ({ info }) => (
   <div className='bg-[#C0C95F] rounded-xl p-2 text-sm flex flex-row justify-evenly text-center'>
     <p>Energy:<br />{info?.energy} kcal</p>
     <p>Protein:<br />{info?.protein}g</p>
