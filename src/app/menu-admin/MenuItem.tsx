@@ -20,7 +20,7 @@ interface MenuItemProps {
 
 export const MenuItem: React.FC<MenuItemProps> = ({ item, openEditModal }) => {
   let storage = useContext(StorageContext);
-  let [imageURL, setImageURL] = useState("");
+  let [imageURL, setImageURL] = useState<string>("");
   useEffect(() => {
     let fetchImage = async () => {
       let url = await getDownloadURL(ref(storage, `menu/${item.id}`));
@@ -32,13 +32,15 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item, openEditModal }) => {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden w-full max-w-xl h-full flex flex-col">
       <div className="relative aspect-[4/3] w-full">
-        <Image
+        {imageURL ? <Image
           src={imageURL}
           alt={item.name}
           fill
+          sizes="auto"
           className="object-cover rounded-t-xl"
           style={{ objectPosition: 'center 70%' }}
-        />
+        /> : <p>Loading image...</p>
+        }
       </div>
       <div className="flex-1 flex flex-col p-5">
         <h3 className="mb-2 color-[#204B2A] font-semibold text-[18px] text-center">{item.name}</h3>

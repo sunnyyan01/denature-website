@@ -3,9 +3,9 @@
 
 import { friendlyAuthError } from '@/lib/firebase/auth';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { FormEvent, MouseEventHandler, use, useContext, useEffect, useState } from 'react';
+import { use, useContext, useEffect, useState } from 'react';
 import { AuthContext, DBContext } from '../providers';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { UserCredential } from 'firebase/auth';
 import { Button } from '@heroui/react';
@@ -14,9 +14,9 @@ export default function LoginPage(
   {
     searchParams
   } : {
-    searchParams: Promise<{returnTo: string}>,
+    searchParams: {returnTo: string},
 }) {
-  const { returnTo } = use(searchParams);
+  const { returnTo } = searchParams;
   const router = useRouter();
 
   const db = useContext(DBContext);

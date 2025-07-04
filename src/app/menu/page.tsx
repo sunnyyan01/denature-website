@@ -3,12 +3,12 @@
 import Image from "next/image";
 import { useState, useEffect, useContext, useMemo } from 'react';
 import { MenuItem } from "./MenuItem";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, PressEvent } from "@heroui/react";
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Popover, PopoverContent, PopoverTrigger, PressEvent } from "@heroui/react";
 import { AuthContext, DBContext } from "../providers";
 import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { currencyFormat, timeFormat } from "@/utils/format";
 import { TimeslotModal } from "./TimeslotModal";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, CrossIcon, X } from "lucide-react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
 import { getCurTime } from "@/utils/time";
@@ -29,6 +29,7 @@ export default function MenuPage() {
   const [cart, setCart] = useState<Record<string, number>>({});
   const [showTimeslotModal, setShowTimeslotModal] = useState(false);
   const [timeslots, setTimeslots] = useState<Array<Timeslot>>([]);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   useEffect(() => {
     let cachedCart = JSON.parse(window.localStorage.getItem("cart") || "{}");
@@ -85,6 +86,12 @@ export default function MenuPage() {
     localStorage.removeItem("cart");
     localStorage.removeItem("timeslot");
   }
+  const removeFromCart = (productId: string) => {
+    setCart(prev => {
+      delete prev[productId];
+      return {...prev};
+    })
+  }
   const itemsInCart = useMemo(
     () => Object.values(cart).reduce((sum, cur) => sum + cur, 0),
     [cart]
@@ -109,15 +116,17 @@ export default function MenuPage() {
     let filtered = Object.values(products);
     if (timeslot != 0)
       filtered = filtered.filter(p => isAvailableAtTime(p, timeslot))
-    filtered.filter(p => p.category == category);
+    filtered = filtered.filter(p => p.category == category);
     return filtered;
-  }, [products, timeslot]);
+  }, [products, timeslot, category]);
 
   const checkout = async () => {
     if (!user) {
       router.push("/login?return-to=menu");
       return;
     }
+
+    setCheckoutLoading(true);
 
     let userInfo = await getDoc(doc(db, "users", user.uid));
     let order = await addDoc(
@@ -145,6 +154,9 @@ export default function MenuPage() {
       doc(db, "orders", order.id),
       { "session_id": session.id }
     );
+
+    setCheckoutLoading(false);
+
     window.location = session.url;
   }
 
@@ -197,8 +209,8 @@ export default function MenuPage() {
         </div>
 
         <div className="px-4 py-2 flex rounded-lg">
-          <Dropdown>
-            <DropdownTrigger>
+          <Popover placement="bottom">
+            <PopoverTrigger>
               <Button
                 disableRipple disableAnimation
                 className="px-4"
@@ -206,39 +218,49 @@ export default function MenuPage() {
               >
                 Cart ({itemsInCart})
               </Button>
-            </DropdownTrigger>
-            <DropdownMenu onAction={checkout}>
-              <>
+            </PopoverTrigger>
+            <PopoverContent>
+              <div className="p-1">
                 {Object.entries(cart).map(([id, qty]) => (
-                  <DropdownItem key={id} isReadOnly={true}>
-                    <div className="flex w-[300px]">
-                      <div>
-                        <b>{products[id]?.name || "Unknown Product"}</b>
-                        <p>Quantity: {qty}</p>
-                      </div>
-                      <h4 className="ml-auto my-auto">{currencyFormat(qty * products[id]?.price)}</h4>
+                  <div key={id} className="flex w-[300px] items-center mb-2">
+                    <div>
+                      <b>{products[id]?.name || "Unknown Product"}</b>
+                      <p>Quantity: {qty}</p>
                     </div>
-                  </DropdownItem>
+                    <h4 className="ml-auto mr-1">{currencyFormat(qty * products[id]?.price)}</h4>
+                    <Button
+                      size="sm" radius="full" isIconOnly variant="light"
+                      onPress={() => removeFromCart(id)}
+                    >
+                      <X color="red" />
+                    </Button>
+                  </div>
                 ))}
                 {Object.keys(cart).length == 0 && (
-                  <DropdownItem key="no-items" isReadOnly={true}>
+                  <div className="mb-2">
                     <i>No items in cart</i>
-                  </DropdownItem>
+                  </div>
                 )}
-              </>
-              <DropdownItem key="total" isReadOnly={true}>
-                <div className="flex w-[300px]">
+                <div className="flex w-[300px] mb-2">
                   <h4>Total</h4>
                   <h4 className="ml-auto my-auto">{currencyFormat(cartTotal)}</h4>
                 </div>
-              </DropdownItem>
-              <DropdownItem key="checkout">
-                <h3 className="p-2 w-[300px] text-lg bg-[#425A26] text-white text-center rounded-lg">
-                  {user ? "Checkout" : "Please login to checkout"}
-                </h3>
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+                <Button
+                  className="p-2 w-[300px] text-lg bg-[#425A26] text-white text-center rounded-lg"
+                  onPress={checkout}
+                  isDisabled={Object.keys(cart).length == 0 || checkoutLoading}
+                >
+                  {
+                    checkoutLoading
+                    ? "Please wait..."
+                    : (user
+                      ? "Checkout"
+                      : "Please login to checkout")
+                  }
+                </Button>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
       </section>
 

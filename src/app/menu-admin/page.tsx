@@ -63,11 +63,11 @@ export default function MenuAdminPage() {
 
   return (
     <main style={{ background: '#F8F6F1' }} className="flex flex-col">
-      <CreateMenuItemModal
+      {showCreateModal && <CreateMenuItemModal
         open={showCreateModal} setOpen={setShowCreateModal}
         category={category} productId={editProductId}
         updateMenuItem={updateMenuItem}
-      />
+      />}
 
       <section className="relative h-[60vh] -mt-30">
         <div className="inset-0">

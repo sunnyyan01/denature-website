@@ -39,6 +39,12 @@ export const CreateMenuItemModal: React.FC<CreateMenuItemModalProps> = ({
       { ...prev, timeslots: [...(prev.timeslots || []), value] }
     ));
   }
+  const removeTimeslot = (idx: number) => {
+    setProduct(prev => {
+      delete prev.timeslots[idx];
+      return {...prev};
+    });
+  }
   const [productImage, setProductImage] = useState<File | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
@@ -76,10 +82,10 @@ export const CreateMenuItemModal: React.FC<CreateMenuItemModalProps> = ({
   }
 
   return (
-    <Modal isOpen={open} onOpenChange={setOpen} size="2xl">
+    <Modal isOpen={open} onOpenChange={setOpen} size="3xl">
       <ModalContent>
         <ModalHeader>
-          <h3>
+          <h3 className="text-[#373D27]">
             {
               productId == "new"
                 ? "Create Menu Item"
@@ -90,7 +96,7 @@ export const CreateMenuItemModal: React.FC<CreateMenuItemModalProps> = ({
         <ModalBody>
           <div className="flex flex-col">
             <Input
-              className="mb-2"
+              className="focus:outline-none border-transparent focus:border-transparent focus:ring-0 mb-2"
               label="Product Name"
               type="text"
               id="productName"
@@ -158,6 +164,7 @@ export const CreateMenuItemModal: React.FC<CreateMenuItemModalProps> = ({
             />
 
             <NumberInput
+              className="mb-2"
               label="Price"
               value={product.price / 100}
               onValueChange={val => updateProductField("price", val * 100)}
@@ -169,11 +176,12 @@ export const CreateMenuItemModal: React.FC<CreateMenuItemModalProps> = ({
               timeslots={product.timeslots || []}
               updateTimeslot={updateTimeslot}
               addTimeslot={addTimeslot}
+              removeTimeslot={removeTimeslot}
             />
 
             <div className="flex justify-center">
               <Button
-                className="mr-4"
+                className="bg-[#C0C95F] mr-4"
                 variant="solid"
                 size="lg"
                 isDisabled={loading}
@@ -182,6 +190,7 @@ export const CreateMenuItemModal: React.FC<CreateMenuItemModalProps> = ({
                 Cancel
               </Button>
               <Button
+                className="bg-[#425A26] text-white"
                 variant="solid"
                 size="lg"
                 isDisabled={loading}
