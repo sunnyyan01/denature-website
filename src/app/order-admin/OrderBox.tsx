@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { DBContext } from '../providers';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import { currencyFormat, timeFormat } from '@/utils/format';
+import { addressFormat, currencyFormat, timeFormat } from '@/utils/format';
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@heroui/react';
 import { ChevronDown } from 'lucide-react';
 
@@ -33,9 +33,10 @@ const OrderStatus: React.FC<OrderStatusProps> = ({ status, setStatus }) => {
 interface OrderBoxProps {
   order: Order;
   setStatus: Function;
+  cancelOrder: (isPaid: boolean) => void;
 }
 
-export const OrderBox: React.FC<OrderBoxProps> = ({ order, setStatus }) => {
+export const OrderBox: React.FC<OrderBoxProps> = ({ order, setStatus, cancelOrder }) => {
   let db = useContext(DBContext);
 
   const getProductName = async (id: string) => {
@@ -69,12 +70,7 @@ export const OrderBox: React.FC<OrderBoxProps> = ({ order, setStatus }) => {
     if (!checkoutSession.collected_information?.shipping_details) return "Not available";
     let name = checkoutSession.collected_information.shipping_details.name;
     let address = checkoutSession.collected_information.shipping_details.address;
-    return [
-      name,
-      address.line1,
-      address.line2,
-      `${address.city} ${address.state} ${address.postal_code}`,
-    ].filter(x => x).join("\n")
+    return name + "\n" + addressFormat(address);
   }, [checkoutSession]);
 
   const updateStatus = (newStatus: string) => {
@@ -83,47 +79,36 @@ export const OrderBox: React.FC<OrderBoxProps> = ({ order, setStatus }) => {
   }
 
   return (
-    <div className="bg-white shadow-xl rounded-lg p-6 sm:p-8 lg:p-10 max-w-4xl w-full border border-gray-200 mb-4">
-
+    <div className="bg-[#E2DED0] shadow-xl rounded-lg p-6 sm:p-8 lg:p-10 max-w-4xl w-full border border-gray-200 mb-4">
       {/* Order ID */}
-      <div className="mb-4 bg-blue-50 p-4 rounded-md border border-blue-200">
-        <p className="text-sm font-semibold text-blue-700">
-          Order ID: {" "}
-          <span className="text-md font-bold text-blue-900 font-mono">{order.id}</span>
-        </p>
-      </div>
+      <p className="text-sm font-bold text-[#373D27] mb-2">
+        Order ID: {" "}
+        <span className="text-md font-mono">{order.id}</span>
+      </p>
 
       {/* Items */}
-      <div className="mb-4">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4 pb-2 border-b-2 border-gray-200">
+      <div className="mb-2 text-[#373D27] bg-[#C0C95F] border-1 border-[#425A26] rounded-xl p-4">
+        <h2 className="text-2xl font-bold mb-1">
           Items
         </h2>
         {Object.entries(order.cart).map(([id, qty], idx) => (
-          <p key={idx} className="hover:bg-gray-50">
+          <p key={idx} className="mb-1">
             {qty}x {productsNames[id]}
           </p>
         ))}
-      </div>
-
-      {/* Total Paid */}
-      <div className="bg-green-50 p-4 rounded-md mb-4 border border-green-200">
-        <div className="flex justify-between items-center">
-          <p className="text-lg font-semibold text-green-700">Total Due:</p>
-          <p className="text-xl font-extrabold text-green-900">
-            {currencyFormat(order.cartTotal)}
-          </p>
+        <div className="font-bold text-[#373D27] flex items-center justify-end">
+          <span className="text-xl mr-3">Total Due:</span>
+          <span className="text-3xl">{currencyFormat(order.cartTotal)}</span>
         </div>
-        <div className="flex justify-between items-center">
-          <p className="text-lg font-semibold text-green-700">Total Paid:</p>
-          <p className="text-xl font-extrabold text-green-900">
-            {currencyFormat(checkoutSession.amount_total)}
-          </p>
+        <div className="font-bold text-[#373D27] flex items-center justify-end">
+          <span className="text-xl mr-3">Total Paid:</span>
+          <span className="text-3xl">{currencyFormat(checkoutSession.amount_total)}</span>
         </div>
       </div>
 
       {/* Status, Delivery Time, Address */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-purple-50 p-4 rounded-md border border-purple-200 flex flex-col">
+      <div className="mb-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white p-4 rounded-md border-2 border-[#E4BD82] flex flex-col">
           <div className="flex flex-row items-center justify-between">
             <p>Order Status</p>
             <OrderStatus
@@ -133,8 +118,8 @@ export const OrderBox: React.FC<OrderBoxProps> = ({ order, setStatus }) => {
           </div>
           <div className="flex flex-row items-center justify-between">
             <p>Checkout Status</p>
-            <p className={checkoutSession.status === "complete" ? "text-green-600" : "text-red-400"}>
-              {checkoutSession.status === "complete" ? "Complete" : "Incomplete"}
+            <p className={checkoutSession.status === "complete" ? "text-green-600 capitalize" : "text-red-400 capitalize"}>
+              {checkoutSession.status}
             </p>
           </div>
           <div className="flex flex-row items-center justify-between">
@@ -145,27 +130,36 @@ export const OrderBox: React.FC<OrderBoxProps> = ({ order, setStatus }) => {
           </div>
         </div>
 
-        <div className="bg-yellow-50 p-4 rounded-md border border-yellow-200">
-          <p className="text-lg font-semibold text-yellow-700 mb-2">Delivery Timeslot:</p>
-          <p className="text-xl font-bold text-yellow-900">{timeFormat(order.timeslot)}</p>
+        <div className="bg-[#E4BD82] text-[#373D27] p-4 rounded-md border-2 border-transparent">
+          <p className="text-lg font-semibold mb-2">Delivery Timeslot:</p>
+          <p className="text-xl font-bold">{timeFormat(order.timeslot)}</p>
         </div>
       </div>
 
-      <div className="mt-6 bg-indigo-50 p-4 rounded-md border border-indigo-200 flex">
+      <div className="mb-2 text-[#373D27] bg-[#C0C95F] p-4 rounded-md border-1 border-[#425A26] flex">
         <div className="flex flex-col w-1/2">
-          <p className="text-lg font-semibold text-indigo-700 mb-2">Delivery Address</p>
-          <p className="text-xl text-indigo-900 whitespace-pre-line">
+          <p className="text-lg font-bold mb-2">Delivery Address</p>
+          <p className="text-xl whitespace-pre-line">
             {assembledAddress}
           </p>
         </div>
 
         <div className="flex flex-col w-1/2">
-          <p className="text-lg font-semibold text-indigo-700 mb-2">Contact Details</p>
-          <p className="text-xl text-indigo-900">
+          <p className="text-lg font-bold mb-2">Contact Details</p>
+          <p className="text-xl">
             Email: {checkoutSession.customer_details?.email || "Not available"}<br />
             Phone: {checkoutSession.customer_details?.phone || "Not available"}
           </p>
         </div>
+      </div>
+
+      <div className="flex justify-end">
+        <Button
+          className='bg-[#373D27] text-white justify-self-end inline'
+          onPress={() => cancelOrder(checkoutSession.status == "complete")}
+        >
+          Cancel Order
+        </Button>
       </div>
     </div>
   );

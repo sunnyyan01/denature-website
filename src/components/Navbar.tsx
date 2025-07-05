@@ -213,6 +213,7 @@ export default function Navigation() {
                 <DropdownItem key="orders">My Orders</DropdownItem>
                 {admin && <DropdownItem key="order-admin">Order Admin</DropdownItem>}
                 {admin && <DropdownItem key="menu-admin">Menu Admin</DropdownItem>}
+                {admin && <DropdownItem key="user-admin">User Admin</DropdownItem>}
                 <DropdownItem key="logout">Logout</DropdownItem>
               </>
             }
@@ -345,6 +346,7 @@ export default function Navigation() {
                 <DropdownItem key="orders">My Orders</DropdownItem>
                 {admin && <DropdownItem key="order-admin">Order Admin</DropdownItem>}
                 {admin && <DropdownItem key="menu-admin">Menu Admin</DropdownItem>}
+                {admin && <DropdownItem key="user-admin">User Admin</DropdownItem>}
                 <DropdownItem key="logout">Logout</DropdownItem>
               </>
             }

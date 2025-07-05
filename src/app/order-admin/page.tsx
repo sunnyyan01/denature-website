@@ -3,9 +3,10 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext, DBContext } from "../providers";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { OrderBox } from "./OrderBox";
 import { Checkbox } from "@heroui/react";
+import { OrderCancelModal } from "./OrderCancelModal";
 
 export default function OrdersPage() {
   let auth = useContext(AuthContext);
@@ -21,6 +22,14 @@ export default function OrdersPage() {
     });
   }
   let [showCompleted, setShowCompleted] = useState(false);
+  let [toCancel, setToCancel] = useState(-1);
+  let [toCancelPaid, setToCancelPaid] = useState(false);
+  let [showCancelModal, setShowCancelModal] = useState(false);
+
+  let processOrderCancel = async () => {
+    await deleteDoc(doc(db, "orders", orders[toCancel].id));
+    setOrders(prev => prev.toSpliced(toCancel, 1));
+  }
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -31,14 +40,22 @@ export default function OrdersPage() {
           : query(collection(db, "orders"), where("user_id", "==", user.uid), where("status", "!=", "completed"))
       );
       let snapshot = await getDocs(q);
-      setOrders(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })) as any);
+      let orders: Array<Order> = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })) as any;
+      orders = orders.toSorted((order1, order2) => order1.timeslot - order2.timeslot);
+      setOrders(orders);
     }
     fetchOrders();
   }, [user, showCompleted]);
 
   return (
     <main style={{ background: '#F8F6F1' }} className="flex flex-col p-4 pt-12">
-      <h1 className="mb-8">My Orders</h1>
+      <OrderCancelModal
+        open={showCancelModal} setOpen={setShowCancelModal}
+        isPaid={toCancelPaid}
+        confirmCancel={processOrderCancel}
+      />
+
+      <h1 className="mb-8">Order Admin</h1>
 
       <Checkbox isSelected={showCompleted} onValueChange={setShowCompleted}>
         Show Completed Orders
@@ -50,6 +67,11 @@ export default function OrdersPage() {
             key={idx}
             order={order}
             setStatus={(newStatus: string) => updateStatus(newStatus, idx)}
+            cancelOrder={(isPaid) => {
+              setToCancel(idx);
+              setToCancelPaid(isPaid);
+              setShowCancelModal(true);
+            }}
           />
         ))}
       </div>
