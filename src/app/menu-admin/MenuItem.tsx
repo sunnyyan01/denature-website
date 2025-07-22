@@ -15,10 +15,13 @@ const NutritionInfoBox: React.FC<{ info: Record<string, number> }> = ({ info }) 
 
 interface MenuItemProps {
   item: Product;
-  openEditModal: (e: PressEvent) => void;
+  openEditModal: () => void;
+  openDeleteModal: () => void;
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({ item, openEditModal }) => {
+export const MenuItem: React.FC<MenuItemProps> = (
+  { item, openEditModal, openDeleteModal }
+) => {
   let storage = useContext(StorageContext);
   let [imageURL, setImageURL] = useState<string>("");
   useEffect(() => {
@@ -51,11 +54,19 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item, openEditModal }) => {
         <p className="color-[#666] text-[14px]">NSW Category: {item.nsw_category}</p>
         <h4 className='text-center text-xl mt-auto'>{currencyFormat(item.price)}</h4>
         <Button
-          className='p-2 bg-[#425A26] text-white text-lg flex align-center rounded-lg'
+          className='p-2 bg-[#425A26] text-white text-lg flex align-center rounded-lg mb-1'
           radius='sm'
           onPress={openEditModal}
         >
           Edit
+        </Button>
+        <Button
+          variant='bordered'
+          className='p-2 border-[#425A26] text-[#425A26] text-lg flex align-center rounded-lg'
+          radius='sm'
+          onPress={openDeleteModal}
+        >
+          Delete
         </Button>
       </div>
     </div>

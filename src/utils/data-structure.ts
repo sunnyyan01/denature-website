@@ -13,12 +13,13 @@ interface Product {
         fibre: number;
         protein: number;
     }
-    main_grain?: string;
-    protein?: string;
-    vegetables?: string;
-    nsw_category?: string;
+    main_grain: string;
+    protein: string;
+    vegetables: string;
+    nsw_category: string;
     timeslots: Array<Timeslot>;
     price: number;
+    price_id?: string,
 }
 
 interface Order {

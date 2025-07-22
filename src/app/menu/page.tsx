@@ -143,11 +143,17 @@ export default function MenuPage() {
     let queryParams = new URLSearchParams({
       customerId: userInfo.data()!["stripe_id"],
       orderId: order.id,
-      orderTotal: cartTotal.toString(),
     })
     let resp = await fetch(
-      "/api/checkout_session/new?" + queryParams.toString(),
-      { method: "POST" },
+      "/api/checkout_session/new?" + queryParams.toString(), {
+        method: "POST",
+        body: JSON.stringify(
+          Object.entries(cart).map(([id, qty]) => ([
+            products[id].price_id,
+            qty,
+          ]))
+        )
+      },
     );
     let session = await resp.json();
     await updateDoc(

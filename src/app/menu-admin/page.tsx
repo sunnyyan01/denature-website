@@ -4,29 +4,47 @@ import Image from "next/image";
 import { useState, useEffect, useContext, useMemo } from 'react';
 import { MenuItem } from "./MenuItem";
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, PressEvent } from "@heroui/react";
-import { AuthContext, DBContext } from "../providers";
-import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
-import { currencyFormat, timeFormat } from "@/utils/format";
+import { DBContext } from "../providers";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { ChevronDown, PlusCircleIcon } from "lucide-react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useRouter } from "next/navigation";
 import { CreateMenuItemModal } from "./CreateMenuItemModal";
+import { DeleteMenuItemModal } from "./DeleteMenuItemModal";
+import { CreateCategoryModal } from "./CreateCategoryModal";
+import { DeleteCategoryModal } from "./DeleteCategoryModal";
 
 export default function MenuAdminPage() {
   const db = useContext(DBContext);
-  const auth = useContext(AuthContext);
-
-  const [user] = useAuthState(auth);
-
-  const router = useRouter();
 
   const [products, setProducts] = useState<Record<string, Product>>({});
   const [categories, setCategories] = useState<Record<string, string>>({});
   const [category, setCategory] = useState<string>("");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editProductId, setEditProductId] = useState("new");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteProductId, setDeleteProductId] = useState("");
+  const [showCreateCatModal, setShowCreateCatModal] = useState(false);
+  const [showDeleteCatModal, setShowDeleteCatModal] = useState(false);
   const updateMenuItem = (product: Product) => {
     setProducts(prev => ({ ...prev, [product.id]: product }));
+  }
+  const deleteMenuItem = (productId: number) => {
+    setProducts(prev => {
+      delete prev[productId];
+      return {...prev};
+    });
+  }
+  const createCategory = (id: string, name: string) => {
+    setCategories(prev => ({...prev, [id]: name}));
+    setCategory(id);
+  }
+  const deleteCategory = (id: string) => {
+    let selCategory: string;
+    setCategories(prev => {
+      delete prev[id];
+      selCategory = Object.keys(prev)[0];
+      return {...prev};
+    })
+    setCategory(selCategory!);
   }
 
   useEffect(() => {
@@ -57,8 +75,7 @@ export default function MenuAdminPage() {
 
   const filteredProducts = useMemo(() => {
     let filtered = Object.values(products);
-    filtered.filter(p => p.category == category);
-    return filtered;
+    return filtered.filter(p => p.category == category);
   }, [products]);
 
   return (
@@ -68,6 +85,21 @@ export default function MenuAdminPage() {
         category={category} productId={editProductId}
         updateMenuItem={updateMenuItem}
       />}
+      {showDeleteModal && <DeleteMenuItemModal
+        open={showDeleteModal} setOpen={setShowDeleteModal}
+        product={products[deleteProductId]}
+        deleteMenuItem={deleteMenuItem}
+      />}
+      <CreateCategoryModal
+        open={showCreateCatModal} setOpen={setShowCreateCatModal}
+        createCategory={createCategory}
+      />
+      <DeleteCategoryModal
+        open={showDeleteCatModal} setOpen={setShowDeleteCatModal}
+        warning={filteredProducts.length > 0}
+        categoryId={category} categoryName={categories[category]}
+        deleteCategory={deleteCategory}
+      />
 
       <section className="relative h-[60vh] -mt-30">
         <div className="inset-0">
@@ -82,12 +114,11 @@ export default function MenuAdminPage() {
         </div>
       </section>
 
-      <section className="px-8 py-2">
+      <section className="px-8 py-2 flex">
         <Dropdown>
           <DropdownTrigger>
             <Button
               disableRipple disableAnimation
-              className=""
               variant="bordered"
               endContent={<ChevronDown fill="currentColor" size={16} />}
             >
@@ -103,6 +134,19 @@ export default function MenuAdminPage() {
             ))}
           </DropdownMenu>
         </Dropdown>
+        <Button
+          className="bg-[#425A26] text-white mx-2"
+          onPress={() => setShowCreateCatModal(true)}
+        >
+          New Category
+        </Button>
+        <Button
+          isDisabled={Object.keys(categories).length <= 1}
+          className="bg-[#C0C95F]"
+          onPress={() => setShowDeleteCatModal(true)}
+        >
+          Delete Category
+        </Button>
       </section>
 
       <section className="px-8 py-2">
@@ -115,6 +159,10 @@ export default function MenuAdminPage() {
                 openEditModal={() => {
                   setEditProductId(item.id);
                   setShowCreateModal(true);
+                }}
+                openDeleteModal={() => {
+                  setDeleteProductId(item.id);
+                  setShowDeleteModal(true);
                 }}
               />
             ))}

@@ -2,9 +2,9 @@ import { timeFormat } from "@/utils/format";
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, NumberInput } from "@heroui/react";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { DBContext, StorageContext } from "../providers";
-import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { TimeslotPicker } from "./TimeslotPicker";
-import { ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 interface CreateMenuItemModalProps {
   open: boolean;
@@ -64,19 +64,52 @@ export const CreateMenuItemModal: React.FC<CreateMenuItemModalProps> = ({
 
   const submit = async () => {
     setLoading(true);
+
     let newId;
     if (productId == "new") {
-      let docRef = await addDoc(collection(db, "products"), product);
+      let newProduct: Record<string, any> = {...product, category};
+      let docRef = await addDoc(collection(db, "products"), newProduct);
       newId = docRef.id;
-      updateMenuItem({ ...product, id: newId });
+      newProduct.id = newId;
+      let result = await uploadBytes(ref(storage, `menu/${newId}`), productImage!);
+      let resp = await fetch(`/api/product/${newId}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          name: product.name,
+          price: product.price,
+          image: await getDownloadURL(result.ref),
+        })
+      })
+      let data = await resp.json();
+      newProduct.price_id = data.default_price;
+      await updateDoc(doc(db, "products", newId), {
+        price_id: data.default_price,
+      })
+      updateMenuItem(newProduct);
     } else {
-      await setDoc(doc(db, "products", productId), product);
       newId = productId;
-      updateMenuItem(product);
+      if (productImage) {
+        await uploadBytes(ref(storage, `menu/${newId}`), productImage);
+      }
+
+      let resp = await fetch(`/api/product/${newId}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          name: product.name,
+          price: product.price,
+        })
+      })
+      let {price_id} = await resp.json();
+      await setDoc(doc(db, "products", productId), {
+        ...product,
+        price_id
+      });
+      updateMenuItem({
+        ...product,
+        price_id
+      });
     }
-    if (productImage) {
-      await uploadBytes(ref(storage, `menu/${newId}`), productImage);
-    }
+
     setLoading(false);
     setOpen(false);
   }

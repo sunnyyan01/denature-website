@@ -8,10 +8,11 @@ export async function POST(request: NextRequest) {
     const headersList = await headers();
     const origin = headersList.get('origin');
 
-    let params = new URL(request.url!).searchParams;
+    let params = request.nextUrl.searchParams;
     let orderId = params.get("orderId");
     let customerId = params.get("customerId");
-    let orderTotal = parseInt(params.get("orderTotal") as string);
+
+    let cart: Array<[string, number]> = await request.json();
 
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
@@ -20,18 +21,12 @@ export async function POST(request: NextRequest) {
       shipping_address_collection: {
         allowed_countries: ['AU'],
       },
-      line_items: [
-        {
-          price_data: {
-            product_data: {
-              name: `De Nature Order ${orderId}`
-            },
-            unit_amount: orderTotal,
-            currency: "AUD",
-          },
-          quantity: 1,
-        },
-      ],
+      line_items: (
+        cart.map(([price_id, qty]) => ({
+          price: price_id,
+          quantity: qty,
+        }))
+      ),
       phone_number_collection: {
         enabled: true,
       },
