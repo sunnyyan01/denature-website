@@ -40,6 +40,12 @@ Go to the "Sign-in method" tab, click on "Add new provider" and select "email/pa
 
 Then repeat and add Google as another provider. Follow the prompts - I think the only thing you need to enter is a support email.
 
+Now go to the "Settings" tab and select "Authorised domains".
+Basically, for security reasons, you need to give it a link to the website you are logging in from.
+You only need the part between `https://` and the first slash.
+For your current website this is `denature.org.au`.
+You may also want to add the free domain that Vercel gives you (e.g. mine is `denature-website-chi.vercel.app`).
+
 Now everything is set up. You can monitor user accounts using the "Users" tab.
 If a user needs help with their account, you can send a password reset email from here.
 Please do not use the "Add user" button, some user info is stored elsewhere and will not be created if you create a user here.
